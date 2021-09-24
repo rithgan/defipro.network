@@ -5,47 +5,89 @@ import CardHeader from '@mui/material/CardHeader'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+
+const theme = createTheme({
+	components: {
+		MuiTypography: {
+			styleOverrides: {
+				root: {
+					lineHeight: '1.575',
+					fontSize: '0.9rem',
+				},
+			},
+		},
+		MuiCardHeader: {
+			styleOverrides: {
+				title: {
+					fontSize: '2rem',
+					fontWeight: '500',
+				},
+			},
+		},
+	},
+})
 
 const Farms = () => {
 	return (
 		<>
-			<Box>
-				<Card>
-					<CardHeader title="Your Farms"></CardHeader>
-					<CardContent>
-						<CardContent>
-							<Typography variant="body3" component="p">
-								BNB to Harvest:
-							</Typography>
-							<Typography variant="body2" color="text.secondary">
-								0.00000000 BNB
-							</Typography>
-							<Typography variant="body3" color="text.secondary">
-								$ 0.00000000
-							</Typography>
+			<ThemeProvider theme={theme}>
+				<Box
+					sx={{
+						flexGrow: 1,
+						// boxShadow: '0 0 8px 2px rgb(0 0 0 / 8%)',
+						marginBottom: '16px',
+						background: 'transparent',
+					}}
+				>
+					<Card
+						sx={{
+							borderRadius: '16px',
+							boxShadow: '0 0 8px 2px rgb(0 0 0 / 8%)',
+						}}
+					>
+						<CardHeader title="Your Farms"></CardHeader>
+						<CardContent sx={{ padding: '0px' }}>
+							<CardContent>
+								<Typography variant="body3" component="p">
+									BNB to Harvest:
+								</Typography>
+								<Typography
+									sx={{ fontWeight: '500', fontSize: '1.25rem' }}
+									variant="body2"
+									color="text.secondary"
+								>
+									0.00000000 BNB
+									<Button sx={{ marginLeft: '.5rem' }} variant="contained">
+										Harvest
+									</Button>
+								</Typography>
+								<Typography variant="body3" color="text.secondary">
+									$ 0.00000000
+								</Typography>
+							</CardContent>
+							<CardContent>
+								<Typography variant="body3" component="p">
+									BNB to Wallet:
+								</Typography>
+								<Typography
+									sx={{ fontWeight: '500', fontSize: '1.25rem' }}
+									variant="body2"
+									color="text.secondary"
+								>
+									0.00000000 BNB
+									<Button sx={{ marginLeft: '.5rem' }} variant="contained">
+										Wallet
+									</Button>
+								</Typography>
+								<Typography variant="body3" color="text.secondary">
+									$ 0.00000000
+								</Typography>
+							</CardContent>
 						</CardContent>
-						<CardContent>
-							<Button variant="contained">Harvest</Button>
-						</CardContent>
-					</CardContent>
-					<CardContent>
-						<CardContent>
-							<Typography variant="body3" component="p">
-								BNB in Wallet:
-							</Typography>
-							<Typography variant="body2" color="text.secondary">
-								0.00000000 BNB
-							</Typography>
-							<Typography variant="body3" color="text.secondary">
-								$ 0.00000000
-							</Typography>
-						</CardContent>
-						<CardContent>
-							<Button variant="contained">History</Button>
-						</CardContent>
-					</CardContent>
-				</Card>
-			</Box>
+					</Card>
+				</Box>
+			</ThemeProvider>
 		</>
 	)
 }

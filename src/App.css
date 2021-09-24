@@ -1,0 +1,21 @@
+* {
+	box-sizing: border-box;
+}
+
+.main-section {
+	min-height: calc(100vh - 160px);
+}
+
+section {
+	padding: 32px 0;
+}
+
+.container {
+	/*width: 100%;*/
+	padding-left: var(--bs-gutter-x, 20px);
+	padding-right: var(--bs-gutter-x, 20px);
+	/*margin-right: auto;
+	margin-left: auto;*/
+	margin-right: 10%;
+	margin-left: 10%;
+}
