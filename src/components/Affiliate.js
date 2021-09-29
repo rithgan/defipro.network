@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
 	Box,
 	Card,
@@ -11,6 +11,7 @@ import {
 	InputBase,
 } from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import modal from '../modal'
 
 const theme = createTheme({
 	components: {
@@ -41,6 +42,18 @@ const theme = createTheme({
 })
 
 const Affiliate = () => {
+	const [referralUrl, setReferralUrl] = useState('')
+	//
+	// 	setReferralUrl(async () => {
+	// 		let web3 = await modal()
+	// 		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+	// 		return fromAddr
+	// 	})
+	useEffect(async () => {
+		let web3 = await modal()
+		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+		setReferralUrl(() => window.location.href + '?r=' + fromAddr)
+	}, [referralUrl])
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -86,12 +99,13 @@ const Affiliate = () => {
 										fontWeight: '400',
 									}}
 								>
-									Your personal link:
+									Your personal link
 								</Typography>
 
 								{/* <TextField id="outlined-basic" variant="outlined"></TextField> */}
 								{/* <Button variant="contained">Copy</Button> */}
 								<InputBase
+									value={referralUrl}
 									sx={{
 										flex: 1,
 										background: 'white',

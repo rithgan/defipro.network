@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Card, CardHeader, CardContent } from '@mui/material'
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
@@ -10,6 +10,10 @@ import Button from '@mui/material/Button'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 // import AllInclusiveIcon from '@mui/icons-material/AllInclusive'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { stakeContract } from '../contract'
+import modal from '../modal'
+
+const levels = [0, 1, 2, 3]
 
 const theme = createTheme({
 	components: {
@@ -55,6 +59,32 @@ const theme = createTheme({
 })
 
 const Pools = () => {
+	const [level0Value, setLevel0Value] = useState('')
+	const [level1Value, setLevel1Value] = useState('')
+	const [level2Value, setLevel2Value] = useState('')
+	const [level3Value, setLevel3Value] = useState('')
+	const deposit = async (level) => {
+		let value
+		switch (level) {
+			case 0:
+				value = level0Value
+				break
+			case 1:
+				value = level1Value
+				break
+			case 2:
+				value = level2Value
+				break
+			case 3:
+				value = level3Value
+				break
+			default:
+				console.error('level is missing')
+		}
+		let web3 = await modal()
+		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+		if (value >= 0.05 && fromAddr !== '') stakeContract(value, level, fromAddr)
+	}
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -98,6 +128,7 @@ const Pools = () => {
 							</Typography>
 						</CardContent>
 
+						{/* plan0 */}
 						<Accordion>
 							<AccordionSummary
 								expandIcon={<ExpandMoreIcon />}
@@ -133,14 +164,19 @@ const Pools = () => {
 									}}
 								>
 									<InputBase
+										value={level0Value}
+										onChange={(e) => setLevel0Value(e.target.value)}
 										sx={{ ml: 1, flex: 1 }}
 										placeholder="Enter BNB account"
 										inputProps={{ 'aria-label': 'enter bnb amount' }}
 									/>
 								</Paper>
-								<Button variant="contained">Stake</Button>
+								<Button onClick={() => deposit(levels[0])} variant="contained">
+									Stake
+								</Button>
 							</AccordionDetails>
 						</Accordion>
+						{/* plan1 */}
 						<Accordion>
 							<AccordionSummary
 								expandIcon={<ExpandMoreIcon />}
@@ -172,14 +208,19 @@ const Pools = () => {
 									}}
 								>
 									<InputBase
+										value={level1Value}
+										onChange={(e) => setLevel1Value(e.target.value)}
 										sx={{ ml: 1, flex: 1 }}
 										placeholder="Enter BNB account"
 										inputProps={{ 'aria-label': 'enter bnb amount' }}
 									/>
 								</Paper>
-								<Button variant="contained">Stake</Button>
+								<Button onClick={() => deposit(levels[1])} variant="contained">
+									Stake
+								</Button>
 							</AccordionDetails>
 						</Accordion>
+						{/* plan2 */}
 						<Accordion>
 							<AccordionSummary
 								expandIcon={<ExpandMoreIcon />}
@@ -211,14 +252,19 @@ const Pools = () => {
 									}}
 								>
 									<InputBase
+										value={level2Value}
+										onChange={(e) => setLevel2Value(e.target.value)}
 										sx={{ ml: 1, flex: 1 }}
 										placeholder="Enter BNB account"
 										inputProps={{ 'aria-label': 'enter bnb amount' }}
 									/>
 								</Paper>
-								<Button variant="contained">Stake</Button>
+								<Button onClick={() => deposit(levels[2])} variant="contained">
+									Stake
+								</Button>
 							</AccordionDetails>
 						</Accordion>
+						{/* plan3 */}
 						<Accordion>
 							<AccordionSummary
 								expandIcon={<ExpandMoreIcon />}
@@ -250,12 +296,16 @@ const Pools = () => {
 									}}
 								>
 									<InputBase
+										value={level3Value}
+										onChange={(e) => setLevel3Value(e.target.value)}
 										sx={{ ml: 1, flex: 1 }}
 										placeholder="Enter BNB account"
 										inputProps={{ 'aria-label': 'enter bnb amount' }}
 									/>
 								</Paper>
-								<Button variant="contained">Stake</Button>
+								<Button onClick={() => deposit(levels[3])} variant="contained">
+									Stake
+								</Button>
 							</AccordionDetails>
 						</Accordion>
 					</Card>

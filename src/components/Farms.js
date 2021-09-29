@@ -6,6 +6,8 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { harvestContract } from '../contract'
+import modal from '../modal'
 
 const theme = createTheme({
 	components: {
@@ -29,6 +31,11 @@ const theme = createTheme({
 })
 
 const Farms = () => {
+	const harvest = async () => {
+		let web3 = await modal()
+		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+		fromAddr !== '' ? harvestContract(fromAddr) : null
+	}
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -58,7 +65,11 @@ const Farms = () => {
 									color="text.secondary"
 								>
 									0.00000000 BNB
-									<Button sx={{ marginLeft: '.5rem' }} variant="contained">
+									<Button
+										onClick={harvest}
+										sx={{ marginLeft: '.5rem' }}
+										variant="contained"
+									>
 										Harvest
 									</Button>
 								</Typography>
@@ -77,7 +88,7 @@ const Farms = () => {
 								>
 									0.00000000 BNB
 									<Button sx={{ marginLeft: '.5rem' }} variant="contained">
-										Wallet
+										History
 									</Button>
 								</Typography>
 								<Typography variant="body3" color="text.secondary">
