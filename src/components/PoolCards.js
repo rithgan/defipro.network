@@ -1,0 +1,303 @@
+import React, { useState } from 'react'
+import {
+	Box,
+	Card,
+	CardHeader,
+	CardContent,
+	CardActions,
+	Button,
+	Typography,
+	Paper,
+	Grid,
+	InputBase,
+} from '@mui/material'
+import { styled } from '@mui/material/styles'
+import { stakeContract } from '../contract'
+import modal from '../modal'
+
+const levels = [0, 1, 2, 3]
+
+const HeadText = styled(Typography)(() => ({
+	textAlign: 'center',
+	fontSize: '1.875rem',
+	lineHeight: '2.225rem',
+}))
+
+const ItemHeading = styled(`h4`)(() => ({
+	marginTop: '0px',
+	marginBottom: '0px',
+	marginLeft: '0.75rem',
+	paddingBottom: '0.35rem',
+}))
+
+const Itemsection = styled(`section`)(() => ({
+	width: '100%',
+	padding: '0px !important',
+}))
+
+const Item = styled(Card)(({ theme }) => ({
+	// ...theme.typography.body2,
+	paddingTop: '2rem',
+	paddingBottom: '2rem',
+	// textAlign: 'center',
+	color: theme.palette.text.secondary,
+	// display: 'flex',
+}))
+
+const ItemContainer = styled(`div`)(({ theme }) => ({
+	display: 'flex',
+}))
+
+const ItemContent = styled(CardContent)(({ theme }) => ({
+	flex: '1 1 0%',
+	textAlign: 'center',
+	padding: '0',
+	paddingBottom: '0 !important',
+}))
+
+const UpperText = styled(Typography)(({ theme }) => ({
+	...theme.typography.h5,
+	textAlign: 'center',
+}))
+const LowerText = styled(Typography)(({ theme }) => ({
+	...theme.typography.body2,
+	textAlign: 'center',
+}))
+
+const ItemInput = styled(InputBase)(() => ({
+	marginLeft: '0.75rem',
+	marginRight: '0.75rem',
+	// paddingLeft: '0.25rem',
+	// paddingRight: '0.25rem',
+	padding: '0.25rem 0.35rem',
+	background: '#f5f5f5 !important',
+	borderRadius: '4px',
+}))
+
+const ItemButton = styled(Button)(() => ({}))
+
+const PoolCards = () => {
+	const [level0Value, setLevel0Value] = useState('')
+	const [level1Value, setLevel1Value] = useState('')
+	const [level2Value, setLevel2Value] = useState('')
+	const [level3Value, setLevel3Value] = useState('')
+	const deposit = async (level) => {
+		let value
+		switch (level) {
+			case 0:
+				value = level0Value
+				break
+			case 1:
+				value = level1Value
+				break
+			case 2:
+				value = level2Value
+				break
+			case 3:
+				value = level3Value
+				break
+			default:
+				console.error('level is missing')
+		}
+		let web3 = await modal()
+		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+		if (value >= 0.05 && fromAddr !== '') stakeContract(value, level, fromAddr)
+	}
+	return (
+		<>
+			<Box sx={{ flexGrow: 1 }}>
+				<Grid container spacing={2} mt={1}>
+					<Grid item md={12}>
+						<HeadText>Stake BNB</HeadText>
+					</Grid>
+					{/* plan 1 */}
+					<Grid item xs={12} md={3}>
+						<ItemHeading>Plan 1</ItemHeading>
+						<Itemsection>
+							<Item>
+								<ItemContainer>
+									<ItemContent>
+										<UpperText>Forever</UpperText>
+										<LowerText>Days</LowerText>
+									</ItemContent>
+									<ItemContent>
+										<UpperText>2%</UpperText>
+										<LowerText>Daily %</LowerText>
+									</ItemContent>
+								</ItemContainer>
+								<ItemContainer style={{ marginTop: '1rem' }}>
+									<ItemContent>
+										<UpperText>∞</UpperText>
+										<LowerText>Total</LowerText>
+									</ItemContent>
+									<ItemContent>
+										<UpperText>∞</UpperText>
+										<LowerText>Total Earn</LowerText>
+									</ItemContent>
+								</ItemContainer>
+								<ItemContainer style={{ marginTop: '1rem' }}>
+									<ItemContent>
+										<ItemInput
+											value={level0Value}
+											onChange={(e) => setLevel0Value(e.target.value)}
+											placeholder="Enter amount"
+											inputProps={{ 'aria-label': 'enter bnb amount' }}
+										/>
+									</ItemContent>
+									<ItemContent>
+										<ItemButton
+											onClick={() => deposit(levels[0])}
+											variant="contained"
+										>
+											STAKE
+										</ItemButton>
+									</ItemContent>
+								</ItemContainer>
+							</Item>
+						</Itemsection>
+					</Grid>
+					{/* plan 2 */}
+					<Grid item xs={12} md={3}>
+						<ItemHeading>Plan 2</ItemHeading>
+						<Itemsection>
+							<Item>
+								<ItemContainer>
+									<ItemContent>
+										<UpperText>40</UpperText>
+										<LowerText>Days</LowerText>
+									</ItemContent>
+									<ItemContent>
+										<UpperText>4%</UpperText>
+										<LowerText>Daily %</LowerText>
+									</ItemContent>
+								</ItemContainer>
+								<ItemContainer style={{ marginTop: '1rem' }}>
+									<ItemContent>
+										<UpperText>160%</UpperText>
+										<LowerText>Total</LowerText>
+									</ItemContent>
+									<ItemContent>
+										<UpperText>0</UpperText>
+										<LowerText>Total Earn</LowerText>
+									</ItemContent>
+								</ItemContainer>
+								<ItemContainer style={{ marginTop: '1rem' }}>
+									<ItemContent>
+										<ItemInput
+											value={level1Value}
+											onChange={(e) => setLevel1Value(e.target.value)}
+											placeholder="Enter amount"
+											inputProps={{ 'aria-label': 'enter bnb amount' }}
+										/>
+									</ItemContent>
+									<ItemContent>
+										<ItemButton
+											onClick={() => deposit(levels[1])}
+											variant="contained"
+										>
+											STAKE
+										</ItemButton>
+									</ItemContent>
+								</ItemContainer>
+							</Item>
+						</Itemsection>
+					</Grid>
+					{/* plan 3 */}
+					<Grid item xs={12} md={3}>
+						<ItemHeading>Plan 3</ItemHeading>
+						<Itemsection>
+							<Item>
+								<ItemContainer>
+									<ItemContent>
+										<UpperText>60</UpperText>
+										<LowerText>Days</LowerText>
+									</ItemContent>
+									<ItemContent>
+										<UpperText>3.5%</UpperText>
+										<LowerText>Daily %</LowerText>
+									</ItemContent>
+								</ItemContainer>
+								<ItemContainer style={{ marginTop: '1rem' }}>
+									<ItemContent>
+										<UpperText>210%</UpperText>
+										<LowerText>Total</LowerText>
+									</ItemContent>
+									<ItemContent>
+										<UpperText>0</UpperText>
+										<LowerText>Total Earn</LowerText>
+									</ItemContent>
+								</ItemContainer>
+								<ItemContainer style={{ marginTop: '1rem' }}>
+									<ItemContent>
+										<ItemInput
+											value={level2Value}
+											onChange={(e) => setLevel2Value(e.target.value)}
+											placeholder="Enter amount"
+											inputProps={{ 'aria-label': 'enter bnb amount' }}
+										/>
+									</ItemContent>
+									<ItemContent>
+										<ItemButton
+											onClick={() => deposit(levels[2])}
+											variant="contained"
+										>
+											STAKE
+										</ItemButton>
+									</ItemContent>
+								</ItemContainer>
+							</Item>
+						</Itemsection>
+					</Grid>
+					{/* plan 4 */}
+					<Grid item xs={12} md={3}>
+						<ItemHeading>Plan 4</ItemHeading>
+						<Itemsection>
+							<Item>
+								<ItemContainer>
+									<ItemContent>
+										<UpperText>90</UpperText>
+										<LowerText>Days</LowerText>
+									</ItemContent>
+									<ItemContent>
+										<UpperText>3%</UpperText>
+										<LowerText>Daily %</LowerText>
+									</ItemContent>
+								</ItemContainer>
+								<ItemContainer style={{ marginTop: '1rem' }}>
+									<ItemContent>
+										<UpperText>270%</UpperText>
+										<LowerText>Total</LowerText>
+									</ItemContent>
+									<ItemContent>
+										<UpperText>0</UpperText>
+										<LowerText>Total Earn</LowerText>
+									</ItemContent>
+								</ItemContainer>
+								<ItemContainer style={{ marginTop: '1rem' }}>
+									<ItemContent>
+										<ItemInput
+											value={level3Value}
+											onChange={(e) => setLevel3Value(e.target.value)}
+											placeholder="Enter amount"
+											inputProps={{ 'aria-label': 'enter bnb amount' }}
+										/>
+									</ItemContent>
+									<ItemContent>
+										<ItemButton
+											onClick={() => deposit(levels[3])}
+											variant="contained"
+										>
+											STAKE
+										</ItemButton>
+									</ItemContent>
+								</ItemContainer>
+							</Item>
+						</Itemsection>
+					</Grid>
+				</Grid>
+			</Box>
+		</>
+	)
+}
+
+export default PoolCards
