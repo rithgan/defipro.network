@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from './components/NavBar'
 import Farms from './components/Farms'
-import Pools from './components/Pools'
+// import Pools from './components/Pools'
 import PoolCards from './components/PoolCards'
 import Affiliate from './components/Affiliate'
 import Disclaimer from './components/Disclaimer'
