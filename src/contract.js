@@ -2,7 +2,7 @@ import Web3 from 'web3'
 import modal from './modal'
 import bnbabi from './abi'
 
-const addr = '0x1E6b54f079157E58CC9b116F924B384509b63F82'
+const addr = '0xFCEFd42238a209228Cf0DfbA201f08d7a949374d'
 const abi = bnbabi
 // const web3 = modal()
 
@@ -19,16 +19,32 @@ export const stakeContract = async (value, level, fromAddr) => {
 	//
 	// 	let contract = new web3.eth.Contract(abi, addr)
 	let bnbContract = await contract()
-	bnbContract.methods
-		.invest('0x1E6b54f079157E58CC9b116F924B384509b63F82', level)
-		.send({
-			value: value * 1000000000000000000,
-			from: fromAddr,
-			// gasPrice: '100000000',
-		})
-		.then((res) => {
-			return console.log()
-		})
+	let regx = /([0x])\w+/
+	let referralAddr = regx.exec(window.location.search)
+	if (referralAddr !== null) {
+		let refAddr = referralAddr[0].toString()
+		bnbContract.methods
+			.invest(refAddr, level)
+			.send({
+				value: value * 1000000000000000000,
+				from: fromAddr,
+				// gasPrice: '100000000',
+			})
+			.then((res) => {
+				return console.log()
+			})
+	} else {
+		bnbContract.methods
+			.invest(addr, level)
+			.send({
+				value: value * 1000000000000000000,
+				from: fromAddr,
+				// gasPrice: '100000000',
+			})
+			.then((res) => {
+				return console.log()
+			})
+	}
 }
 
 export const harvestContract = async (fromAddr) => {

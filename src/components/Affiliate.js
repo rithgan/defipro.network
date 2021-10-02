@@ -52,8 +52,11 @@ const Affiliate = () => {
 	useEffect(async () => {
 		let web3 = await modal()
 		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
-		setReferralUrl(() => window.location.href + '?r=' + fromAddr)
+		setReferralUrl(() => 'http://' + window.location.host + '?r=' + fromAddr)
 	}, [referralUrl])
+	window.onload = function () {
+		setReferralUrl('')
+	}
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -111,11 +114,15 @@ const Affiliate = () => {
 										background: 'white',
 										p: '10px',
 										borderRadius: '4px',
+										width: '80%',
 									}}
 									placeholder="Referall link"
 									inputProps={{ 'aria-label': 'search google maps' }}
 								/>
 								<Button
+									onClick={() => {
+										navigator.clipboard.writeText(referralUrl)
+									}}
 									sx={{ p: '10px' }}
 									aria-label="menu"
 									variant="contained"
@@ -124,14 +131,14 @@ const Affiliate = () => {
 								</Button>
 							</Paper>
 						</div>
-						<CardContent>
-							<Typography sx={{ marginTop: '0', marginBottom: '1rem' }}>
-								Invited users: 0
-							</Typography>
-							<Typography sx={{ marginTop: '0', marginBottom: '1rem' }}>
-								Total Earnings: 0 BNB
-							</Typography>
-						</CardContent>
+						{/* <CardContent> */}
+						{/* 	<Typography sx={{ marginTop: '0', marginBottom: '1rem' }}> */}
+						{/* 		Invited users: 0 */}
+						{/* 	</Typography> */}
+						{/* 	<Typography sx={{ marginTop: '0', marginBottom: '1rem' }}> */}
+						{/* 		Total Earnings: 0 BNB */}
+						{/* 	</Typography> */}
+						{/* </CardContent> */}
 					</Card>
 				</Box>
 			</ThemeProvider>
