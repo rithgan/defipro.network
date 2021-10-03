@@ -12,8 +12,10 @@ import {
 } from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import modal from '../modal'
+import { theme } from './theme'
 
-const theme = createTheme({
+const themeAffiliate = createTheme({
+	...theme,
 	components: {
 		MuiTypography: {
 			styleOverrides: {
@@ -26,7 +28,7 @@ const theme = createTheme({
 		MuiCardHeader: {
 			styleOverrides: {
 				title: {
-					fontSize: '2rem',
+					fontSize: '2rem !important',
 					fontWeight: '500',
 				},
 			},
@@ -59,7 +61,8 @@ const Affiliate = () => {
 	}
 	return (
 		<>
-			<ThemeProvider theme={theme}>
+			{/* <ThemeProvider theme={theme}> */}
+			<ThemeProvider theme={themeAffiliate}>
 				<Box
 					sx={{
 						flexGrow: 1,
@@ -126,6 +129,7 @@ const Affiliate = () => {
 									sx={{ p: '10px' }}
 									aria-label="menu"
 									variant="contained"
+									color="secondary"
 								>
 									Copy
 								</Button>
@@ -142,6 +146,7 @@ const Affiliate = () => {
 					</Card>
 				</Box>
 			</ThemeProvider>
+			{/* </ThemeProvider> */}
 		</>
 	)
 }

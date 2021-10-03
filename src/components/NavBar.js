@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Box, AppBar, Toolbar, Typography, Button, Switch } from '@mui/material'
 import chainContract from '../contract'
-import { styled } from '@mui/material/styles'
-
+import { styled, ThemeProvider } from '@mui/material/styles'
 import modal from '../modal'
+import { theme } from './theme'
+import PropTypes from 'prop-types'
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 	width: 62,
@@ -52,7 +53,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 	},
 }))
 
-const NavBar = () => {
+const NavBar = ({ toggleColorMode }) => {
 	// const [myWeb3, setMyWeb3] = useState()
 	const [account, setAccount] = useState('Connect')
 	const connect = async () => {
@@ -66,23 +67,40 @@ const NavBar = () => {
 		setAccount(addr)
 		// await modal()
 	}
+	console.log(account.length)
 	return (
 		<>
-			<Box sx={{ flexGrow: 1 }}>
-				<AppBar position="static">
-					<Toolbar>
-						<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-							BNB Factor
-						</Typography>
-						<MaterialUISwitch sx={{ m: 1 }} defaultChecked />
-						<Button onClick={connect} color="inherit">
-							{account}
-						</Button>
-					</Toolbar>
-				</AppBar>
-			</Box>
+			<ThemeProvider theme={theme}>
+				<Box sx={{ flexGrow: 1 }}>
+					<AppBar position="static">
+						<Toolbar>
+							<Button color="inherit">
+								<img src="./logo.png" alt="logo" width="48px" />
+							</Button>
+							<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+								{' '}
+								BNBFarms
+							</Typography>
+							<MaterialUISwitch
+								onClick={toggleColorMode}
+								sx={{ m: 1 }}
+								defaultChecked
+							/>
+							<Button onClick={connect} color="secondary" variant="contained">
+								{account === 'Connect'
+									? 'Connect'
+									: account.slice(0, 5) + '...' + account.slice(37)}
+							</Button>
+						</Toolbar>
+					</AppBar>
+				</Box>
+			</ThemeProvider>
 		</>
 	)
+}
+
+NavBar.propTypes = {
+	toggleColorMode: PropTypes.function,
 }
 
 export default NavBar

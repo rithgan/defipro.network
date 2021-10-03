@@ -5,11 +5,13 @@ import CardHeader from '@mui/material/CardHeader'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { ThemeProvider, createTheme, styled } from '@mui/material/styles'
 import { harvestContract } from '../contract'
 import modal from '../modal'
+import { theme } from './theme'
 
-const theme = createTheme({
+const themeFarm = createTheme({
+	...theme,
 	components: {
 		MuiTypography: {
 			styleOverrides: {
@@ -38,7 +40,8 @@ const Farms = () => {
 	}
 	return (
 		<>
-			<ThemeProvider theme={theme}>
+			{/* <ThemeProvider theme={theme}> */}
+			<ThemeProvider theme={themeFarm}>
 				<Box
 					sx={{
 						flexGrow: 1,
@@ -69,6 +72,7 @@ const Farms = () => {
 										onClick={harvest}
 										sx={{ marginLeft: '.5rem' }}
 										variant="contained"
+										color="secondary"
 									>
 										Harvest
 									</Button>
@@ -87,7 +91,11 @@ const Farms = () => {
 									color="text.secondary"
 								>
 									0.00000000 BNB
-									<Button sx={{ marginLeft: '.5rem' }} variant="contained">
+									<Button
+										sx={{ marginLeft: '.5rem' }}
+										color="secondary"
+										variant="contained"
+									>
 										History
 									</Button>
 								</Typography>
@@ -99,6 +107,7 @@ const Farms = () => {
 					</Card>
 				</Box>
 			</ThemeProvider>
+			{/* </ThemeProvider> */}
 		</>
 	)
 }
