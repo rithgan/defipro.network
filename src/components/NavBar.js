@@ -79,7 +79,7 @@ const NavBar = ({ toggleColorMode }) => {
 							</Button>
 							<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 								{' '}
-								BNBFarms
+								BitFarms
 							</Typography>
 							<MaterialUISwitch
 								onClick={toggleColorMode}

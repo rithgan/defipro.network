@@ -22,7 +22,7 @@ const themeStats = createTheme({
 			styleOverrides: {
 				root: {
 					lineHeight: '1.575',
-					fontSize: '1.275rem',
+					fontSize: '1.5rem',
 				},
 			},
 		},
@@ -62,15 +62,15 @@ const Stats = () => {
 						<Typography sx={{ marginTop: '0', marginBottom: '1rem' }}>
 							Invited users: 0
 						</Typography>
-						<Typography sx={{ marginTop: '0', marginBottom: '1rem' }}>
+						<Typography sx={{ marginTop: '0' }}>
 							Total Earnings: 0 BNB
 						</Typography>
-						<Typography sx={{ marginTop: '0', marginBottom: '1rem' }}>
-							{`Total Referral Deposit: 0 BNB`}
-						</Typography>
-						<Typography sx={{ marginTop: '0', marginBottom: '1rem' }}>
-							{`Total Referral Earnings: 0 BNB`}
-						</Typography>
+						{/* <Typography sx={{ marginTop: '0', marginBottom: '1rem' }}> */}
+						{/* 	{`Total Referral Deposit: 0 BNB`} */}
+						{/* </Typography> */}
+						{/* <Typography sx={{ marginTop: '0', marginBottom: '1rem' }}> */}
+						{/* 	{`Total Referral Earnings: 0 BNB`} */}
+						{/* </Typography> */}
 					</CardContent>
 				</Card>
 			</Box>

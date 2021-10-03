@@ -11,9 +11,10 @@ import {
 	Grid,
 	InputBase,
 } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import { styled, ThemeProvider } from '@mui/material/styles'
 import { stakeContract } from '../contract'
 import modal from '../modal'
+import { theme } from './theme'
 
 const levels = [0, 1, 2, 3]
 
@@ -30,7 +31,7 @@ const ItemHeading = styled(`h4`)(() => ({
 	paddingBottom: '0.35rem',
 }))
 
-const Itemsection = styled(`section`)(() => ({
+const ItemSection = styled(`section`)(() => ({
 	width: '100%',
 	padding: '0px !important',
 }))
@@ -41,6 +42,8 @@ const Item = styled(Card)(({ theme }) => ({
 	paddingBottom: '2rem',
 	// textAlign: 'center',
 	color: theme.palette.text.secondary,
+	borderRadius: '16px',
+	boxShadow: '0 0 8px 2px rgb(0 0 0 / 8%)',
 	// display: 'flex',
 }))
 
@@ -105,197 +108,205 @@ const PoolCards = () => {
 	}
 	return (
 		<>
-			<Box sx={{ flexGrow: 1 }}>
-				<Grid container spacing={2} mt={1}>
-					<Grid item md={12}>
-						<HeadText>Stake BNB</HeadText>
+			<ThemeProvider theme={theme}>
+				<Box
+					sx={{ flexGrow: 1, marginBottom: '16px', background: 'transparent' }}
+				>
+					<Grid sx={{ paddingTop: '16px' }} container spacing={2} mt={1}>
+						<Grid item md={12}>
+							<HeadText>Deposit BNB</HeadText>
+						</Grid>
+						{/* Wault 1 */}
+						<Grid item xs={12} md={3}>
+							<ItemHeading>Wault 1</ItemHeading>
+							<ItemSection>
+								<Item>
+									<ItemContainer>
+										<ItemContent>
+											<UpperText>Forever</UpperText>
+											<LowerText>Days</LowerText>
+										</ItemContent>
+										<ItemContent>
+											<UpperText>2%</UpperText>
+											<LowerText>Daily %</LowerText>
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer style={{ marginTop: '1rem' }}>
+										<ItemContent>
+											<UpperText>∞</UpperText>
+											<LowerText>Total</LowerText>
+										</ItemContent>
+										<ItemContent>
+											<UpperText>∞</UpperText>
+											<LowerText>Total Earn</LowerText>
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer style={{ marginTop: '1rem' }}>
+										<ItemContent>
+											<ItemInput
+												value={level0Value}
+												onChange={(e) => setLevel0Value(e.target.value)}
+												placeholder="Enter amount"
+												inputProps={{ 'aria-label': 'enter bnb amount' }}
+											/>
+										</ItemContent>
+										<ItemContent>
+											<ItemButton
+												color="secondary"
+												onClick={() => deposit(levels[0])}
+												variant="contained"
+											>
+												Deposit
+											</ItemButton>
+										</ItemContent>
+									</ItemContainer>
+								</Item>
+							</ItemSection>
+						</Grid>
+						{/* Wault 2 */}
+						<Grid item xs={12} md={3}>
+							<ItemHeading>Wault 2</ItemHeading>
+							<ItemSection>
+								<Item>
+									<ItemContainer>
+										<ItemContent>
+											<UpperText>40</UpperText>
+											<LowerText>Days</LowerText>
+										</ItemContent>
+										<ItemContent>
+											<UpperText>4%</UpperText>
+											<LowerText>Daily %</LowerText>
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer style={{ marginTop: '1rem' }}>
+										<ItemContent>
+											<UpperText>160%</UpperText>
+											<LowerText>Total</LowerText>
+										</ItemContent>
+										<ItemContent>
+											<UpperText>0</UpperText>
+											<LowerText>Total Earn</LowerText>
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer style={{ marginTop: '1rem' }}>
+										<ItemContent>
+											<ItemInput
+												value={level1Value}
+												onChange={(e) => setLevel1Value(e.target.value)}
+												placeholder="Enter amount"
+												inputProps={{ 'aria-label': 'enter bnb amount' }}
+											/>
+										</ItemContent>
+										<ItemContent>
+											<ItemButton
+												color="secondary"
+												onClick={() => deposit(levels[1])}
+												variant="contained"
+											>
+												Deposit
+											</ItemButton>
+										</ItemContent>
+									</ItemContainer>
+								</Item>
+							</ItemSection>
+						</Grid>
+						{/* Wault 3 */}
+						<Grid item xs={12} md={3}>
+							<ItemHeading>Wault 3</ItemHeading>
+							<ItemSection>
+								<Item>
+									<ItemContainer>
+										<ItemContent>
+											<UpperText>60</UpperText>
+											<LowerText>Days</LowerText>
+										</ItemContent>
+										<ItemContent>
+											<UpperText>3.5%</UpperText>
+											<LowerText>Daily %</LowerText>
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer style={{ marginTop: '1rem' }}>
+										<ItemContent>
+											<UpperText>210%</UpperText>
+											<LowerText>Total</LowerText>
+										</ItemContent>
+										<ItemContent>
+											<UpperText>0</UpperText>
+											<LowerText>Total Earn</LowerText>
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer style={{ marginTop: '1rem' }}>
+										<ItemContent>
+											<ItemInput
+												value={level2Value}
+												onChange={(e) => setLevel2Value(e.target.value)}
+												placeholder="Enter amount"
+												inputProps={{ 'aria-label': 'enter bnb amount' }}
+											/>
+										</ItemContent>
+										<ItemContent>
+											<ItemButton
+												color="secondary"
+												onClick={() => deposit(levels[2])}
+												variant="contained"
+											>
+												Deposit
+											</ItemButton>
+										</ItemContent>
+									</ItemContainer>
+								</Item>
+							</ItemSection>
+						</Grid>
+						{/* Wault 4 */}
+						<Grid item xs={12} md={3}>
+							<ItemHeading>Wault 4</ItemHeading>
+							<ItemSection>
+								<Item>
+									<ItemContainer>
+										<ItemContent>
+											<UpperText>90</UpperText>
+											<LowerText>Days</LowerText>
+										</ItemContent>
+										<ItemContent>
+											<UpperText>3%</UpperText>
+											<LowerText>Daily %</LowerText>
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer style={{ marginTop: '1rem' }}>
+										<ItemContent>
+											<UpperText>270%</UpperText>
+											<LowerText>Total</LowerText>
+										</ItemContent>
+										<ItemContent>
+											<UpperText>0</UpperText>
+											<LowerText>Total Earn</LowerText>
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer style={{ marginTop: '1rem' }}>
+										<ItemContent>
+											<ItemInput
+												value={level3Value}
+												onChange={(e) => setLevel3Value(e.target.value)}
+												placeholder="Enter amount"
+												inputProps={{ 'aria-label': 'enter bnb amount' }}
+											/>
+										</ItemContent>
+										<ItemContent>
+											<ItemButton
+												color="secondary"
+												onClick={() => deposit(levels[3])}
+												variant="contained"
+											>
+												Deposit
+											</ItemButton>
+										</ItemContent>
+									</ItemContainer>
+								</Item>
+							</ItemSection>
+						</Grid>
 					</Grid>
-					{/* plan 1 */}
-					<Grid item xs={12} md={3}>
-						<ItemHeading>Plan 1</ItemHeading>
-						<Itemsection>
-							<Item>
-								<ItemContainer>
-									<ItemContent>
-										<UpperText>Forever</UpperText>
-										<LowerText>Days</LowerText>
-									</ItemContent>
-									<ItemContent>
-										<UpperText>2%</UpperText>
-										<LowerText>Daily %</LowerText>
-									</ItemContent>
-								</ItemContainer>
-								<ItemContainer style={{ marginTop: '1rem' }}>
-									<ItemContent>
-										<UpperText>∞</UpperText>
-										<LowerText>Total</LowerText>
-									</ItemContent>
-									<ItemContent>
-										<UpperText>∞</UpperText>
-										<LowerText>Total Earn</LowerText>
-									</ItemContent>
-								</ItemContainer>
-								<ItemContainer style={{ marginTop: '1rem' }}>
-									<ItemContent>
-										<ItemInput
-											value={level0Value}
-											onChange={(e) => setLevel0Value(e.target.value)}
-											placeholder="Enter amount"
-											inputProps={{ 'aria-label': 'enter bnb amount' }}
-										/>
-									</ItemContent>
-									<ItemContent>
-										<ItemButton
-											onClick={() => deposit(levels[0])}
-											variant="contained"
-										>
-											STAKE
-										</ItemButton>
-									</ItemContent>
-								</ItemContainer>
-							</Item>
-						</Itemsection>
-					</Grid>
-					{/* plan 2 */}
-					<Grid item xs={12} md={3}>
-						<ItemHeading>Plan 2</ItemHeading>
-						<Itemsection>
-							<Item>
-								<ItemContainer>
-									<ItemContent>
-										<UpperText>40</UpperText>
-										<LowerText>Days</LowerText>
-									</ItemContent>
-									<ItemContent>
-										<UpperText>4%</UpperText>
-										<LowerText>Daily %</LowerText>
-									</ItemContent>
-								</ItemContainer>
-								<ItemContainer style={{ marginTop: '1rem' }}>
-									<ItemContent>
-										<UpperText>160%</UpperText>
-										<LowerText>Total</LowerText>
-									</ItemContent>
-									<ItemContent>
-										<UpperText>0</UpperText>
-										<LowerText>Total Earn</LowerText>
-									</ItemContent>
-								</ItemContainer>
-								<ItemContainer style={{ marginTop: '1rem' }}>
-									<ItemContent>
-										<ItemInput
-											value={level1Value}
-											onChange={(e) => setLevel1Value(e.target.value)}
-											placeholder="Enter amount"
-											inputProps={{ 'aria-label': 'enter bnb amount' }}
-										/>
-									</ItemContent>
-									<ItemContent>
-										<ItemButton
-											onClick={() => deposit(levels[1])}
-											variant="contained"
-										>
-											STAKE
-										</ItemButton>
-									</ItemContent>
-								</ItemContainer>
-							</Item>
-						</Itemsection>
-					</Grid>
-					{/* plan 3 */}
-					<Grid item xs={12} md={3}>
-						<ItemHeading>Plan 3</ItemHeading>
-						<Itemsection>
-							<Item>
-								<ItemContainer>
-									<ItemContent>
-										<UpperText>60</UpperText>
-										<LowerText>Days</LowerText>
-									</ItemContent>
-									<ItemContent>
-										<UpperText>3.5%</UpperText>
-										<LowerText>Daily %</LowerText>
-									</ItemContent>
-								</ItemContainer>
-								<ItemContainer style={{ marginTop: '1rem' }}>
-									<ItemContent>
-										<UpperText>210%</UpperText>
-										<LowerText>Total</LowerText>
-									</ItemContent>
-									<ItemContent>
-										<UpperText>0</UpperText>
-										<LowerText>Total Earn</LowerText>
-									</ItemContent>
-								</ItemContainer>
-								<ItemContainer style={{ marginTop: '1rem' }}>
-									<ItemContent>
-										<ItemInput
-											value={level2Value}
-											onChange={(e) => setLevel2Value(e.target.value)}
-											placeholder="Enter amount"
-											inputProps={{ 'aria-label': 'enter bnb amount' }}
-										/>
-									</ItemContent>
-									<ItemContent>
-										<ItemButton
-											onClick={() => deposit(levels[2])}
-											variant="contained"
-										>
-											STAKE
-										</ItemButton>
-									</ItemContent>
-								</ItemContainer>
-							</Item>
-						</Itemsection>
-					</Grid>
-					{/* plan 4 */}
-					<Grid item xs={12} md={3}>
-						<ItemHeading>Plan 4</ItemHeading>
-						<Itemsection>
-							<Item>
-								<ItemContainer>
-									<ItemContent>
-										<UpperText>90</UpperText>
-										<LowerText>Days</LowerText>
-									</ItemContent>
-									<ItemContent>
-										<UpperText>3%</UpperText>
-										<LowerText>Daily %</LowerText>
-									</ItemContent>
-								</ItemContainer>
-								<ItemContainer style={{ marginTop: '1rem' }}>
-									<ItemContent>
-										<UpperText>270%</UpperText>
-										<LowerText>Total</LowerText>
-									</ItemContent>
-									<ItemContent>
-										<UpperText>0</UpperText>
-										<LowerText>Total Earn</LowerText>
-									</ItemContent>
-								</ItemContainer>
-								<ItemContainer style={{ marginTop: '1rem' }}>
-									<ItemContent>
-										<ItemInput
-											value={level3Value}
-											onChange={(e) => setLevel3Value(e.target.value)}
-											placeholder="Enter amount"
-											inputProps={{ 'aria-label': 'enter bnb amount' }}
-										/>
-									</ItemContent>
-									<ItemContent>
-										<ItemButton
-											onClick={() => deposit(levels[3])}
-											variant="contained"
-										>
-											STAKE
-										</ItemButton>
-									</ItemContent>
-								</ItemContainer>
-							</Item>
-						</Itemsection>
-					</Grid>
-				</Grid>
-			</Box>
+				</Box>
+			</ThemeProvider>
 		</>
 	)
 }
