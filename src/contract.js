@@ -57,12 +57,67 @@ export const harvestContract = async (fromAddr) => {
 		.then((res) => console.log(res))
 }
 
-export const getEarnedBnb = async () => {}
+export const getInviteUsers = async () => {
+	let bnbContract = await contract()
+	let web3 = await modal()
+	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+	let result = bnbContract.methods
+		.getUserTotalReferrals(fromAddr)
+		.call()
+		.then((res) => res)
+	return result
+}
 
-export const getInviteUsers = async () => {}
+export const getEarnedBnb = async () => {
+	let bnbContract = await contract()
+	let web3 = await modal()
+	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+	let result = bnbContract.methods
+		.getUserTotalDeposits(fromAddr)
+		.call()
+		.then((res) => res)
+	return result
+}
 
-export const getTotalUserEarnings = async () => {}
+export const getTotalDeposit = async () => {
+	let bnbContract = await contract()
 
-export const getTotalDeposit = async () => {}
+	let result = bnbContract.methods
+		.totalInvested()
+		.call()
+		.then((res) => res)
+	return result
 
-export const getTotalWithdrawal = async () => {}
+	// console.log(value)
+}
+export const getTotalReferralDeposit = async () => {
+	let bnbContract = await contract()
+
+	let result = bnbContract.methods
+		.totalInvested()
+		.call()
+		.then((res) => res)
+	return result
+
+	// console.log(value)
+}
+
+export const getTotalUserEarnings = async () => {
+	let bnbContract = await contract()
+	let web3 = await modal()
+	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+	let result = bnbContract.methods
+		.getUserTotalWithdrawn(fromAddr)
+		.call()
+		.then((res) => res)
+	return result
+}
+
+export const getTotalWithdrawal = async () => {
+	let web3 = await modal()
+	// let web3 = await modal()
+	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+	let result = web3.eth.getBalance(fromAddr).then((res) => res)
+
+	return result
+}

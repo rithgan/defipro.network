@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
@@ -6,7 +6,11 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles'
-import { harvestContract } from '../contract'
+import {
+	harvestContract,
+	getTotalUserEarnings,
+	getTotalWithdrawal,
+} from '../contract'
 import modal from '../modal'
 import { theme } from './theme'
 
@@ -33,11 +37,17 @@ const themeFarm = createTheme({
 })
 
 const Farms = () => {
+	const [toHarvest, setToHarvest] = useState(0)
+	const [withdraw, setWithdraw] = useState(0)
+
 	const harvest = async () => {
 		let web3 = await modal()
 		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
 		fromAddr !== '' ? harvestContract(fromAddr) : null
 	}
+	let totalHarvest = getTotalUserEarnings().then((res) => setToHarvest(res))
+	let totalWithdraw = getTotalWithdrawal().then((res) => setWithdraw(res))
+
 	return (
 		<>
 			{/* <ThemeProvider theme={theme}> */}
@@ -67,7 +77,7 @@ const Farms = () => {
 									variant="body2"
 									color="text.secondary"
 								>
-									0.00000000 BNB
+									{toHarvest / 1000000000000000000} BNB
 									<Button
 										onClick={harvest}
 										sx={{ marginLeft: '.5rem' }}
@@ -77,9 +87,9 @@ const Farms = () => {
 										Harvest
 									</Button>
 								</Typography>
-								<Typography variant="body3" color="text.secondary">
-									$ 0.00000000
-								</Typography>
+								{/* <Typography variant="body3" color="text.secondary"> */}
+								{/* 	$ 0.00000000 */}
+								{/* </Typography> */}
 							</CardContent>
 							<CardContent>
 								<Typography variant="body3" component="p">
@@ -90,7 +100,7 @@ const Farms = () => {
 									variant="body2"
 									color="text.secondary"
 								>
-									0.00000000 BNB
+									{withdraw / 1000000000000000000} BNB
 									<Button
 										sx={{ marginLeft: '.5rem' }}
 										color="secondary"
@@ -99,9 +109,9 @@ const Farms = () => {
 										History
 									</Button>
 								</Typography>
-								<Typography variant="body3" color="text.secondary">
-									$ 0.00000000
-								</Typography>
+								{/* <Typography variant="body3" color="text.secondary"> */}
+								{/* 	$ 0.00000000 */}
+								{/* </Typography> */}
 							</CardContent>
 						</CardContent>
 					</Card>

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState, useEffect, useMemo, useContext } from 'react'
 import NavBar from './components/NavBar'
 import Farms from './components/Farms'
 // import Pools from './components/Pools'
@@ -10,14 +10,54 @@ import Head from './components/Head'
 import { Box, Grid, Typography } from '@mui/material'
 import './App.css'
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles'
-
-// import {theme} from './theme.js'
+import { getTotalDeposit, getTotalReferralDeposit } from './contract'
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
 
 function App() {
   const theme = useTheme()
   const colorMode = React.useContext(ColorModeContext)
+
+  const [total, setTotal] = useState(0)
+  const [referral, setReferral] = useState(0)
+
+  let fetchTotal = getTotalDeposit()
+
+  console.log(fetchTotal)
+
+  //   const fetchTotal = async () => {
+  //     const total = await new Promise((resolve) => resolve(getTotalDeposit()))
+  //     console.log(total)
+  //     return total
+  //   }
+  //
+  //   // fetchTotal()
+  //   React.useEffect(() => {
+  //     let isMounted = true
+  //     fetchTotal().then((data) => {
+  //       // if (data !== undefined) setTotal(null)
+  //       // setTotal(data)
+  //     })
+  //   }, [total])
+  // const fetchTotal = async () => {
+  //   try {
+  //     const result = await getTotalDeposit()
+  //     console.log('Promise resolved')
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
+
+  // fetchTotal()
+  // console.log('fetch: ' + fetchTotal())
+
+  // React.useEffect(() => {
+  //   // setTotal(2)
+  //   fetchTotal()
+  // }, [])
+  // let fun = (val) => console.log(val)
+  let totalDeposit = getTotalDeposit().then((res) => setTotal(res))
+  let totalReferral = getTotalReferralDeposit().then((res) => setReferral(res))
   return (
     // <PoolCards />
     <div className="App">
@@ -31,10 +71,10 @@ function App() {
               </Grid>
               <Grid item md={6} sx={{ marginTop: '16px' }}>
                 <Typography variant="h5" sx={{ textAlign: 'center' }}>
-                  Total Referral Deposit
+                  Total Value Deposited
                 </Typography>
                 <Typography variant="h5" sx={{ textAlign: 'center' }}>
-                  0 BNB
+                  {total / 1000000000000000000} BNB
                 </Typography>
               </Grid>
               <Grid item md={6} sx={{ marginTop: '16px' }}>
@@ -42,7 +82,7 @@ function App() {
                   Total Referral Earnings
                 </Typography>
                 <Typography variant="h5" sx={{ textAlign: 'center' }}>
-                  0 BNB
+                  {referral / 1000000000000000000} BNB
                 </Typography>
               </Grid>
               <Grid item>
