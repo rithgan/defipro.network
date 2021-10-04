@@ -73,38 +73,43 @@ const NavBar = ({ toggleColorMode }) => {
 			<ThemeProvider theme={theme}>
 				<Box sx={{ flexGrow: 1 }}>
 					<AppBar position="static">
-						<Toolbar>
-							<Button color="inherit">
-								<img src="./logo.png" alt="logo" width="48px" />
-							</Button>
-							<Typography
-								variant="h6"
-								component="div"
-								sx={{
-									flexGrow: 1,
-									letterSpacing: '0.1rem',
-									textTransform: 'uppercase',
-									fontWeight: '700',
-								}}
-							>
-								{' '}
-								BitFarms
-							</Typography>
+						<Toolbar sx={{ justifyContent: 'space-between' }}>
+							<div>
+								<Button color="inherit">
+									<img src="./logo.png" alt="logo" width="48px" />
+									<Typography
+										variant="h6"
+										component="div"
+										sx={{
+											flexGrow: 1,
+											letterSpacing: '0.1rem',
+											textTransform: 'uppercase',
+											fontWeight: '700',
+											marginLeft: '1px',
+										}}
+									>
+										{' '}
+										BitFarms
+									</Typography>
+								</Button>
+							</div>
 							{/* <MaterialUISwitch */}
 							{/* 	onClick={toggleColorMode} */}
 							{/* 	sx={{ m: 1 }} */}
 							{/* 	defaultChecked */}
 							{/* /> */}
-							<Button
-								onClick={connect}
-								color="secondary"
-								variant="contained"
-								sx={{ fontWeight: '600' }}
-							>
-								{account === 'Connect'
-									? 'Connect'
-									: account.slice(0, 5) + '...' + account.slice(37)}
-							</Button>
+							<div>
+								<Button
+									onClick={connect}
+									color="secondary"
+									variant="contained"
+									sx={{ fontWeight: '600' }}
+								>
+									{account === 'Connect'
+										? 'Connect'
+										: account.slice(0, 5) + '...' + account.slice(37)}
+								</Button>
+							</div>
 						</Toolbar>
 					</AppBar>
 				</Box>

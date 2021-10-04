@@ -1,6 +1,8 @@
 import Web3 from 'web3'
 import Web3Modal from 'web3modal'
 import WalletConnectProvider from '@walletconnect/web3-provider'
+import Portis from '@portis/web3'
+import Authereum from 'authereum'
 
 const modal = async () => {
 	const providerOptions = {
@@ -28,6 +30,15 @@ const modal = async () => {
 					desktopLinks: ['encrypted ink'],
 				},
 			},
+		},
+		portis: {
+			package: Portis,
+			options: {
+				id: 'PORTIS_ID', // required
+			},
+		},
+		authereum: {
+			package: Authereum, // required
 		},
 	}
 	const web3Modal = new Web3Modal({
