@@ -16,7 +16,7 @@ import {
 
 export const theme = createTheme({
   palette: {
-    type: 'light',
+    mode: 'dark',
     primary: {
       main: '#ffffff',
     },

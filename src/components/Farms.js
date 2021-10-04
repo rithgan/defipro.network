@@ -77,7 +77,8 @@ const Farms = () => {
 									variant="body2"
 									color="text.secondary"
 								>
-									{toHarvest / 1000000000000000000} BNB
+									{(toHarvest / 1000000000000000000).toString().slice(0, 10)}{' '}
+									BNB
 									<Button
 										onClick={harvest}
 										sx={{ marginLeft: '.5rem' }}
@@ -100,7 +101,7 @@ const Farms = () => {
 									variant="body2"
 									color="text.secondary"
 								>
-									{withdraw / 1000000000000000000} BNB
+									{(withdraw / 1000000000000000000).toString().slice(0, 10)} BNB
 									<Button
 										sx={{ marginLeft: '.5rem' }}
 										color="secondary"

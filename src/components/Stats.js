@@ -126,7 +126,8 @@ const Stats = () => {
 							Invited users: {user}
 						</Typography>
 						<Typography sx={{ marginTop: '0' }}>
-							Total Earnings: {total / 1000000000000000000} BNB
+							Referral Earnings:{' '}
+							{(total / 1000000000000000000).toString().slice(0, 10)} BNB
 						</Typography>
 						{/* <Typography sx={{ marginTop: '0', marginBottom: '1rem' }}> */}
 						{/* 	{`Total Referral Deposit: 0 BNB`} */}

@@ -73,7 +73,7 @@ export const getEarnedBnb = async () => {
 	let web3 = await modal()
 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
 	let result = bnbContract.methods
-		.getUserTotalDeposits(fromAddr)
+		.getUserReferralTotalBonus(fromAddr)
 		.call()
 		.then((res) => res)
 	return result
@@ -90,11 +90,12 @@ export const getTotalDeposit = async () => {
 
 	// console.log(value)
 }
-export const getTotalReferralDeposit = async () => {
+export const getTotalUserDeposit = async () => {
 	let bnbContract = await contract()
-
+	let web3 = await modal()
+	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
 	let result = bnbContract.methods
-		.totalInvested()
+		.getUserTotalDeposits(fromAddr)
 		.call()
 		.then((res) => res)
 	return result
@@ -107,7 +108,7 @@ export const getTotalUserEarnings = async () => {
 	let web3 = await modal()
 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
 	let result = bnbContract.methods
-		.getUserTotalWithdrawn(fromAddr)
+		.getUserDividends(fromAddr)
 		.call()
 		.then((res) => res)
 	return result

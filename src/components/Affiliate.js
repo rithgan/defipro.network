@@ -81,16 +81,16 @@ const Affiliate = () => {
 						<CardContent>
 							<Typography>1 LVL (your invited user) - 7%</Typography>
 							<Typography>2 LVL (user invited by your 1 lvl) - 3%</Typography>
-							<Typography>3 LVL - 1.5%</Typography>
+							<Typography>3 LVL - 2%</Typography>
 							<Typography>4 LVL - 1%</Typography>
-							<Typography>5 LVL - 0.5%</Typography>
+							<Typography>5 LVL - 1%</Typography>
 						</CardContent>
 						<div style={{ padding: '16px' }}>
 							<Paper
 								component="form"
 								sx={{
 									borderRadius: '16px',
-									background: '#f5f5f5',
+									background: '#1e1e1e',
 									p: '1rem',
 									display: 'inline-block',
 									alignItems: 'center',
@@ -114,7 +114,7 @@ const Affiliate = () => {
 									value={referralUrl}
 									sx={{
 										flex: 1,
-										background: 'white',
+										background: '#2c2a2a',
 										p: '10px',
 										borderRadius: '4px',
 										width: '80%',

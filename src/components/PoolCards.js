@@ -20,8 +20,10 @@ const levels = [0, 1, 2, 3]
 
 const HeadText = styled(Typography)(() => ({
 	textAlign: 'center',
-	fontSize: '1.875rem',
+	fontSize: '2rem',
 	lineHeight: '2.225rem',
+	fontWeight: '500',
+	color: '#fff',
 }))
 
 const ItemHeading = styled(`h4`)(() => ({
@@ -29,6 +31,11 @@ const ItemHeading = styled(`h4`)(() => ({
 	marginBottom: '0px',
 	marginLeft: '0.75rem',
 	paddingBottom: '0.35rem',
+	color: '#fff',
+	textTransform: 'uppercase',
+	fontSize: '0.9rem',
+	letterSpacing: '0.1rem',
+	lineHeight: '2',
 }))
 
 const ItemSection = styled(`section`)(() => ({
@@ -61,6 +68,7 @@ const ItemContent = styled(CardContent)(({ theme }) => ({
 const UpperText = styled(Typography)(({ theme }) => ({
 	...theme.typography.h5,
 	textAlign: 'center',
+	fontWeight: '600',
 }))
 const LowerText = styled(Typography)(({ theme }) => ({
 	...theme.typography.body2,
@@ -73,7 +81,7 @@ const ItemInput = styled(InputBase)(() => ({
 	// paddingLeft: '0.25rem',
 	// paddingRight: '0.25rem',
 	padding: '0.25rem 0.35rem',
-	background: '#f5f5f5 !important',
+	background: '#2c2a2a !important',
 	borderRadius: '4px',
 }))
 
@@ -117,13 +125,13 @@ const PoolCards = () => {
 							<HeadText>Deposit BNB</HeadText>
 						</Grid>
 						{/* Wault 1 */}
-						<Grid item xs={12} md={3}>
-							<ItemHeading>Wault 1</ItemHeading>
+						<Grid item xs={12} md={6} lg={3}>
+							<ItemHeading>Wault A</ItemHeading>
 							<ItemSection>
 								<Item>
 									<ItemContainer>
 										<ItemContent>
-											<UpperText>Forever</UpperText>
+											<UpperText>365</UpperText>
 											<LowerText>Days</LowerText>
 										</ItemContent>
 										<ItemContent>
@@ -133,12 +141,12 @@ const PoolCards = () => {
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
-											<UpperText>∞</UpperText>
-											<LowerText>Total</LowerText>
+											<UpperText>730%</UpperText>
+											<LowerText>APR</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<UpperText>∞</UpperText>
-											<LowerText>Total Earn</LowerText>
+											<UpperText>0.05</UpperText>
+											<LowerText>Min Deposit</LowerText>
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
@@ -164,13 +172,13 @@ const PoolCards = () => {
 							</ItemSection>
 						</Grid>
 						{/* Wault 2 */}
-						<Grid item xs={12} md={3}>
-							<ItemHeading>Wault 2</ItemHeading>
+						<Grid item xs={12} md={6} lg={3}>
+							<ItemHeading>Wault B</ItemHeading>
 							<ItemSection>
 								<Item>
 									<ItemContainer>
 										<ItemContent>
-											<UpperText>40</UpperText>
+											<UpperText>30</UpperText>
 											<LowerText>Days</LowerText>
 										</ItemContent>
 										<ItemContent>
@@ -180,12 +188,12 @@ const PoolCards = () => {
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
-											<UpperText>160%</UpperText>
-											<LowerText>Total</LowerText>
+											<UpperText>120%</UpperText>
+											<LowerText>APR</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0</UpperText>
-											<LowerText>Total Earn</LowerText>
+											<UpperText>0.05</UpperText>
+											<LowerText>Min Deposit</LowerText>
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
@@ -211,8 +219,8 @@ const PoolCards = () => {
 							</ItemSection>
 						</Grid>
 						{/* Wault 3 */}
-						<Grid item xs={12} md={3}>
-							<ItemHeading>Wault 3</ItemHeading>
+						<Grid item xs={12} md={6} lg={3}>
+							<ItemHeading>Wault C</ItemHeading>
 							<ItemSection>
 								<Item>
 									<ItemContainer>
@@ -221,18 +229,18 @@ const PoolCards = () => {
 											<LowerText>Days</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<UpperText>3.5%</UpperText>
+											<UpperText>3%</UpperText>
 											<LowerText>Daily %</LowerText>
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
-											<UpperText>210%</UpperText>
-											<LowerText>Total</LowerText>
+											<UpperText>180%</UpperText>
+											<LowerText>APR</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0</UpperText>
-											<LowerText>Total Earn</LowerText>
+											<UpperText>0.05</UpperText>
+											<LowerText>Min Deposit</LowerText>
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
@@ -258,28 +266,28 @@ const PoolCards = () => {
 							</ItemSection>
 						</Grid>
 						{/* Wault 4 */}
-						<Grid item xs={12} md={3}>
-							<ItemHeading>Wault 4</ItemHeading>
+						<Grid item xs={12} md={6} lg={3}>
+							<ItemHeading>Wault D</ItemHeading>
 							<ItemSection>
 								<Item>
 									<ItemContainer>
 										<ItemContent>
-											<UpperText>90</UpperText>
+											<UpperText>120</UpperText>
 											<LowerText>Days</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<UpperText>3%</UpperText>
+											<UpperText>2.5%</UpperText>
 											<LowerText>Daily %</LowerText>
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
-											<UpperText>270%</UpperText>
-											<LowerText>Total</LowerText>
+											<UpperText>300%</UpperText>
+											<LowerText>APR</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0</UpperText>
-											<LowerText>Total Earn</LowerText>
+											<UpperText>0.05</UpperText>
+											<LowerText>Min Deposit</LowerText>
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>

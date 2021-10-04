@@ -6,13 +6,27 @@ import PoolCards from './components/PoolCards'
 import Affiliate from './components/Affiliate'
 import Disclaimer from './components/Disclaimer'
 import Stats from './components/Stats'
-import Head from './components/Head'
-import { Box, Grid, Typography } from '@mui/material'
+// import Head from './components/Head'
+import { Box, Grid, Typography, Paper } from '@mui/material'
 import './App.css'
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles'
-import { getTotalDeposit, getTotalReferralDeposit } from './contract'
+import {
+  useTheme,
+  ThemeProvider,
+  createTheme,
+  styled,
+} from '@mui/material/styles'
+import { getTotalDeposit, getTotalUserDeposit } from './contract'
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
+
+const ItemPaper = styled(Paper)(() => ({
+  margin: '1rem',
+  padding: '1.75rem',
+  background: '#1e1e1e',
+  color: '#fff',
+  borderRadius: '16px',
+  boxShadow: '0 0 8px 2px rgb(0 0 0 / 8%)',
+}))
 
 function App() {
   const theme = useTheme()
@@ -21,85 +35,54 @@ function App() {
   const [total, setTotal] = useState(0)
   const [referral, setReferral] = useState(0)
 
-  let fetchTotal = getTotalDeposit()
-
-  console.log(fetchTotal)
-
-  //   const fetchTotal = async () => {
-  //     const total = await new Promise((resolve) => resolve(getTotalDeposit()))
-  //     console.log(total)
-  //     return total
-  //   }
-  //
-  //   // fetchTotal()
-  //   React.useEffect(() => {
-  //     let isMounted = true
-  //     fetchTotal().then((data) => {
-  //       // if (data !== undefined) setTotal(null)
-  //       // setTotal(data)
-  //     })
-  //   }, [total])
-  // const fetchTotal = async () => {
-  //   try {
-  //     const result = await getTotalDeposit()
-  //     console.log('Promise resolved')
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
-
-  // fetchTotal()
-  // console.log('fetch: ' + fetchTotal())
-
-  // React.useEffect(() => {
-  //   // setTotal(2)
-  //   fetchTotal()
-  // }, [])
-  // let fun = (val) => console.log(val)
   let totalDeposit = getTotalDeposit().then((res) => setTotal(res))
-  let totalReferral = getTotalReferralDeposit().then((res) => setReferral(res))
+  let totalReferral = getTotalUserDeposit().then((res) => setReferral(res))
   return (
     // <PoolCards />
     <div className="App">
       <NavBar toggleColorMode={colorMode.toggleColorMode} />
-      <Box sx={{ flexGrow: 1, background: '#fafafa' }}>
+      <Box sx={{ flexGrow: 1, background: '#2c2a2a' }}>
         <section className="main-section">
           <div className="container">
             <Grid container spacing={4}>
-              <Grid item md={12}>
-                <Head />
+              {/* <Grid item md={12}> */}
+              {/*   <Head /> */}
+              {/* </Grid> */}
+              <Grid item sm={12} md={6} sx={{ marginTop: '16px' }}>
+                <ItemPaper>
+                  <Typography variant="h5" sx={{ textAlign: 'center' }}>
+                    Total Value Deposited
+                  </Typography>
+                  <Typography variant="h5" sx={{ textAlign: 'center' }}>
+                    {(total / 1000000000000000000).toString().slice(0, 10)} BNB
+                  </Typography>
+                </ItemPaper>
               </Grid>
-              <Grid item md={6} sx={{ marginTop: '16px' }}>
-                <Typography variant="h5" sx={{ textAlign: 'center' }}>
-                  Total Value Deposited
-                </Typography>
-                <Typography variant="h5" sx={{ textAlign: 'center' }}>
-                  {total / 1000000000000000000} BNB
-                </Typography>
-              </Grid>
-              <Grid item md={6} sx={{ marginTop: '16px' }}>
-                <Typography variant="h5" sx={{ textAlign: 'center' }}>
-                  Total Referral Earnings
-                </Typography>
-                <Typography variant="h5" sx={{ textAlign: 'center' }}>
-                  {referral / 1000000000000000000} BNB
-                </Typography>
+              <Grid item asm={12} md={6} sx={{ marginTop: '16px' }}>
+                <ItemPaper>
+                  <Typography variant="h5" sx={{ textAlign: 'center' }}>
+                    User Total Deposit
+                  </Typography>
+                  <Typography variant="h5" sx={{ textAlign: 'center' }}>
+                    {(referral / 1000000000000000000).toString().slice(0, 10)}{' '}
+                    BNB
+                  </Typography>
+                </ItemPaper>
               </Grid>
               <Grid item>
                 <PoolCards />
               </Grid>
               <Grid item xs={12} sm={12} md={4}>
                 <Farms />
+                <Stats />
               </Grid>
               <Grid item xs={12} sm={12} md={8}>
                 <Affiliate />
               </Grid>
-              <Grid item md={8}>
-                <Disclaimer />
-              </Grid>
-              <Grid item md={4}>
-                <Stats />
-              </Grid>
+              {/* <Grid item md={8}> */}
+              {/*   <Disclaimer /> */}
+              {/* </Grid> */}
+              <Grid item md={4}></Grid>
             </Grid>
           </div>
         </section>
