@@ -10,9 +10,12 @@ import {
 	harvestContract,
 	getTotalUserEarnings,
 	getTotalWithdrawal,
+	getTotalUserDeposit,
+	getEarnedBnb,
 } from '../contract'
 import modal from '../modal'
 import { theme } from './theme'
+import HistoryModal from './HistoryModal'
 
 const themeFarm = createTheme({
 	...theme,
@@ -33,12 +36,25 @@ const themeFarm = createTheme({
 				},
 			},
 		},
+		MuiCard: {
+			styleOverrides: {
+				root: {
+					background: 'rgb(19, 20, 25) !important',
+				},
+			},
+		},
 	},
 })
 
 const Farms = () => {
 	const [toHarvest, setToHarvest] = useState(0)
 	const [withdraw, setWithdraw] = useState(0)
+	const [earnedBNB, setReferral] = useState(0)
+	const [total, setTotal] = useState(0)
+
+	let totalDeposit = getEarnedBnb().then((res) => setTotal(res))
+
+	let totalReferral = getTotalUserDeposit().then((res) => setReferral(res))
 
 	const harvest = async () => {
 		let web3 = await modal()
@@ -73,7 +89,13 @@ const Farms = () => {
 									BNB to Harvest:
 								</Typography>
 								<Typography
-									sx={{ fontWeight: '500', fontSize: '1.25rem' }}
+									sx={{
+										fontWeight: '500',
+										fontSize: '1.25rem',
+										marginTop: '0.2rem',
+										display: 'flex',
+										justifyContent: 'space-between',
+									}}
 									variant="body2"
 									color="text.secondary"
 								>
@@ -81,11 +103,15 @@ const Farms = () => {
 									BNB
 									<Button
 										onClick={harvest}
-										sx={{ marginLeft: '.5rem' }}
+										sx={{
+											marginLeft: '.5rem',
+											borderRadius: '16px',
+											color: '#fff',
+										}}
 										variant="contained"
 										color="secondary"
 									>
-										Harvest
+										<span>Harvest</span>
 									</Button>
 								</Typography>
 								{/* <Typography variant="body3" color="text.secondary"> */}
@@ -97,17 +123,27 @@ const Farms = () => {
 									BNB to Wallet:
 								</Typography>
 								<Typography
-									sx={{ fontWeight: '500', fontSize: '1.25rem' }}
+									sx={{
+										fontWeight: '500',
+										fontSize: '1.25rem',
+										marginTop: '0.2rem',
+										display: 'flex',
+										justifyContent: 'space-between',
+									}}
 									variant="body2"
 									color="text.secondary"
 								>
 									{(withdraw / 1000000000000000000).toString().slice(0, 10)} BNB
 									<Button
-										sx={{ marginLeft: '.5rem' }}
+										sx={{
+											marginLeft: '.5rem',
+											borderRadius: '16px',
+											color: '#fff',
+										}}
 										color="secondary"
 										variant="contained"
 									>
-										History
+										<HistoryModal earnedBNB={earnedBNB} total={total} />
 									</Button>
 								</Typography>
 								{/* <Typography variant="body3" color="text.secondary"> */}

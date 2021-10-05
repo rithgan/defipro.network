@@ -22,7 +22,7 @@ const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
 const ItemPaper = styled(Paper)(() => ({
   margin: '1rem',
   padding: '1.75rem',
-  background: '#1e1e1e',
+  background: 'rgb(19, 20, 25)',
   color: '#fff',
   borderRadius: '16px',
   boxShadow: '0 0 8px 2px rgb(0 0 0 / 8%)',
@@ -41,7 +41,7 @@ function App() {
     // <PoolCards />
     <div className="App">
       <NavBar toggleColorMode={colorMode.toggleColorMode} />
-      <Box sx={{ flexGrow: 1, background: '#2c2a2a' }}>
+      <Box sx={{ flexGrow: 1, background: 'rgb(26, 27, 32)' }}>
         <section className="main-section">
           <div className="container">
             <Grid container spacing={4}>
@@ -58,7 +58,7 @@ function App() {
                   </Typography>
                 </ItemPaper>
               </Grid>
-              <Grid item asm={12} md={6} sx={{ marginTop: '16px' }}>
+              <Grid item sm={12} md={6} sx={{ marginTop: '16px' }}>
                 <ItemPaper>
                   <Typography variant="h5" sx={{ textAlign: 'center' }}>
                     User Total Deposit

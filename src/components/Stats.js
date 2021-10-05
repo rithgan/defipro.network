@@ -33,6 +33,13 @@ const themeStats = createTheme({
 				},
 			},
 		},
+		MuiCard: {
+			styleOverrides: {
+				root: {
+					background: 'rgb(19, 20, 25) !important',
+				},
+			},
+		},
 	},
 })
 

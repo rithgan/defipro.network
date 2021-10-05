@@ -15,6 +15,9 @@ import { styled, ThemeProvider } from '@mui/material/styles'
 import { stakeContract } from '../contract'
 import modal from '../modal'
 import { theme } from './theme'
+// import ExposureIcon from '@mui/icons-material/Exposure'
+import Image from './WaultImage'
+import CalculatorModal from './CalculatorModal'
 
 const levels = [0, 1, 2, 3]
 
@@ -30,11 +33,11 @@ const ItemHeading = styled(`h4`)(() => ({
 	marginTop: '0px',
 	marginBottom: '0px',
 	marginLeft: '0.75rem',
-	paddingBottom: '0.35rem',
-	color: '#fff',
-	textTransform: 'uppercase',
-	fontSize: '0.9rem',
-	letterSpacing: '0.1rem',
+	// paddingBottom: '0.35rem',
+	color: '#e3af00',
+	textTransform: 'capitalize',
+	fontSize: '1.5rem',
+	// letterSpacing: '0.1rem',
 	lineHeight: '2',
 }))
 
@@ -45,13 +48,14 @@ const ItemSection = styled(`section`)(() => ({
 
 const Item = styled(Card)(({ theme }) => ({
 	// ...theme.typography.body2,
-	paddingTop: '2rem',
+	paddingTop: '0rem',
 	paddingBottom: '2rem',
 	// textAlign: 'center',
 	color: theme.palette.text.secondary,
 	borderRadius: '16px',
-	boxShadow: '0 0 8px 2px rgb(0 0 0 / 8%)',
+	// boxShadow: '0 0 8px 2px #d4a3003d',
 	// display: 'flex',
+	background: 'rgb(19, 20, 25)',
 }))
 
 const ItemContainer = styled(`div`)(({ theme }) => ({
@@ -67,12 +71,17 @@ const ItemContent = styled(CardContent)(({ theme }) => ({
 
 const UpperText = styled(Typography)(({ theme }) => ({
 	...theme.typography.h5,
-	textAlign: 'center',
-	fontWeight: '600',
+	// textAlign: 'center',
+	fontWeight: '400 !important',
+	fontSize: '1.1rem',
+	textAlign: 'start',
+	paddingLeft: '1.875rem',
+	color: 'white',
 }))
 const LowerText = styled(Typography)(({ theme }) => ({
 	...theme.typography.body2,
 	textAlign: 'center',
+	color: 'white',
 }))
 
 const ItemInput = styled(InputBase)(() => ({
@@ -80,12 +89,108 @@ const ItemInput = styled(InputBase)(() => ({
 	marginRight: '0.75rem',
 	// paddingLeft: '0.25rem',
 	// paddingRight: '0.25rem',
-	padding: '0.25rem 0.35rem',
-	background: '#2c2a2a !important',
+	padding: '0.35rem',
+	background:
+		'linear-gradient(rgb(97, 103, 116) 0%, rgb(64, 63, 76) 100%) !important',
 	borderRadius: '4px',
+	width: '80%',
+	marginBottom: '1rem',
 }))
 
-const ItemButton = styled(Button)(() => ({}))
+const ItemButton = styled(Button)(() => ({
+	width: '80%',
+	borderRadius: '4px',
+	color: '#fff',
+}))
+
+const waultA = {
+	row1: {
+		d: '1',
+		r: '2%',
+		i: '0.02',
+	},
+	row2: {
+		d: '7',
+		r: '14.9%',
+		i: '0.149',
+	},
+	row3: {
+		d: '30',
+		r: '81.1%',
+		i: '0.811',
+	},
+	row4: {
+		d: '90',
+		r: '494.3%',
+		i: '4.943',
+	},
+}
+const waultB = {
+	row1: {
+		d: '1',
+		r: '4%',
+		i: '0.04',
+	},
+	row2: {
+		d: '7',
+		r: '31.6%',
+		i: '0.316',
+	},
+	row3: {
+		d: '30',
+		r: '224.3%',
+		i: '2,243',
+	},
+	row4: {
+		d: '90',
+		r: '3311.9%',
+		i: '33.119',
+	},
+}
+const waultC = {
+	row1: {
+		d: '1',
+		r: '3.5%',
+		i: '0.035',
+	},
+	row2: {
+		d: '7',
+		r: '27.2%',
+		i: '0.272',
+	},
+	row3: {
+		d: '30',
+		r: '180.7%',
+		i: '1.807',
+	},
+	row4: {
+		d: '90',
+		r: '2111.2%',
+		i: '21.112',
+	},
+}
+const waultD = {
+	row1: {
+		d: '1',
+		r: '3%',
+		i: '0.03',
+	},
+	row2: {
+		d: '7',
+		r: '23%',
+		i: '0.23',
+	},
+	row3: {
+		d: '30',
+		r: '142.7%',
+		i: '1.427',
+	},
+	row4: {
+		d: '90',
+		r: '1330%',
+		i: '13.3',
+	},
+}
 
 const PoolCards = () => {
 	const [level0Value, setLevel0Value] = useState('')
@@ -122,31 +227,70 @@ const PoolCards = () => {
 				>
 					<Grid sx={{ paddingTop: '16px' }} container spacing={2} mt={1}>
 						<Grid item md={12}>
-							<HeadText>Deposit BNB</HeadText>
+							<HeadText>Stake BNB</HeadText>
 						</Grid>
 						{/* Wault 1 */}
 						<Grid item xs={12} md={6} lg={3}>
-							<ItemHeading>Wault A</ItemHeading>
+							<ItemHeading sx={{ color: 'white !important' }}>
+								Wault A
+							</ItemHeading>
 							<ItemSection>
 								<Item>
-									<ItemContainer>
+									<ItemContainer
+										sx={{
+											marginBottom: '1rem',
+											paddingTop: '24px',
+											paddingBottom: '16px',
+											background: 'rgb(38, 39, 43)',
+										}}
+									>
 										<ItemContent>
-											<UpperText>365</UpperText>
-											<LowerText>Days</LowerText>
+											<ItemHeading>Earn BNB</ItemHeading>
+											<LowerText>2% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<UpperText>2%</UpperText>
-											<LowerText>Daily %</LowerText>
+											<Image src="./bnc1.svg" />
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer>
+										<ItemContent>
+											<UpperText>APR</UpperText>
+											{/* <LowerText>Days</LowerText> */}
+										</ItemContent>
+										<ItemContent>
+											<UpperText>
+												<span>
+													730%
+													<CalculatorModal
+														sx={{
+															cursor: 'pointer',
+															fontSize: '1.3rem',
+														}}
+														wault={waultA}
+													/>
+												</span>
+											</UpperText>
+											{/* <LowerText>Daily %</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
-											<UpperText>730%</UpperText>
-											<LowerText>APR</LowerText>
+											<UpperText>Days</UpperText>
+											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0.05</UpperText>
-											<LowerText>Min Deposit</LowerText>
+											<UpperText>365</UpperText>
+											{/* <LowerText>Min Deposit</LowerText> */}
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer style={{ marginTop: '1rem' }}>
+										<ItemContent>
+											<UpperText>Min Deposit</UpperText>
+											{/* <LowerText>APR</LowerText> */}
+										</ItemContent>
+										<ItemContent>
+											<UpperText>0.05 BNB</UpperText>
+											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
@@ -158,6 +302,8 @@ const PoolCards = () => {
 												inputProps={{ 'aria-label': 'enter bnb amount' }}
 											/>
 										</ItemContent>
+									</ItemContainer>
+									<ItemContainer>
 										<ItemContent>
 											<ItemButton
 												color="secondary"
@@ -173,42 +319,83 @@ const PoolCards = () => {
 						</Grid>
 						{/* Wault 2 */}
 						<Grid item xs={12} md={6} lg={3}>
-							<ItemHeading>Wault B</ItemHeading>
+							<ItemHeading sx={{ color: 'white !important' }}>
+								Wault B
+							</ItemHeading>
 							<ItemSection>
 								<Item>
-									<ItemContainer>
+									<ItemContainer
+										sx={{
+											marginBottom: '1rem',
+											paddingTop: '24px',
+											paddingBottom: '16px',
+											background: 'rgb(38, 39, 43)',
+										}}
+									>
 										<ItemContent>
-											<UpperText>30</UpperText>
-											<LowerText>Days</LowerText>
+											<ItemHeading>Earn BNB</ItemHeading>
+											<LowerText>4% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<UpperText>4%</UpperText>
-											<LowerText>Daily %</LowerText>
+											<Image src="./bnc1.svg" />
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer>
+										<ItemContent>
+											<UpperText>APR</UpperText>
+											{/* <LowerText>Days</LowerText> */}
+										</ItemContent>
+										<ItemContent>
+											<UpperText>
+												<span>
+													120%
+													<CalculatorModal
+														sx={{
+															cursor: 'pointer',
+															fontSize: '1.3rem',
+														}}
+														wault={waultB}
+													/>
+												</span>
+											</UpperText>
+											{/* <LowerText>Daily %</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
-											<UpperText>120%</UpperText>
-											<LowerText>APR</LowerText>
+											<UpperText>Days</UpperText>
+											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0.05</UpperText>
-											<LowerText>Min Deposit</LowerText>
+											<UpperText>30</UpperText>
+											{/* <LowerText>Min Deposit</LowerText> */}
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer style={{ marginTop: '1rem' }}>
+										<ItemContent>
+											<UpperText>Min Deposit</UpperText>
+											{/* <LowerText>APR</LowerText> */}
+										</ItemContent>
+										<ItemContent>
+											<UpperText>0.05 BNB</UpperText>
+											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
 											<ItemInput
-												value={level1Value}
-												onChange={(e) => setLevel1Value(e.target.value)}
+												value={level0Value}
+												onChange={(e) => setLevel0Value(e.target.value)}
 												placeholder="Enter amount"
 												inputProps={{ 'aria-label': 'enter bnb amount' }}
 											/>
 										</ItemContent>
+									</ItemContainer>
+									<ItemContainer>
 										<ItemContent>
 											<ItemButton
 												color="secondary"
-												onClick={() => deposit(levels[1])}
+												onClick={() => deposit(levels[0])}
 												variant="contained"
 											>
 												Deposit
@@ -220,42 +407,83 @@ const PoolCards = () => {
 						</Grid>
 						{/* Wault 3 */}
 						<Grid item xs={12} md={6} lg={3}>
-							<ItemHeading>Wault C</ItemHeading>
+							<ItemHeading sx={{ color: 'white !important' }}>
+								Wault C
+							</ItemHeading>
 							<ItemSection>
 								<Item>
-									<ItemContainer>
+									<ItemContainer
+										sx={{
+											marginBottom: '1rem',
+											paddingTop: '24px',
+											paddingBottom: '16px',
+											background: 'rgb(38, 39, 43)',
+										}}
+									>
 										<ItemContent>
-											<UpperText>60</UpperText>
-											<LowerText>Days</LowerText>
+											<ItemHeading>Earn BNB</ItemHeading>
+											<LowerText>3% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<UpperText>3%</UpperText>
-											<LowerText>Daily %</LowerText>
+											<Image src="./bnc1.svg" />
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer>
+										<ItemContent>
+											<UpperText>APR</UpperText>
+											{/* <LowerText>Days</LowerText> */}
+										</ItemContent>
+										<ItemContent>
+											<UpperText>
+												<span>
+													180%
+													<CalculatorModal
+														sx={{
+															cursor: 'pointer',
+															fontSize: '1.3rem',
+														}}
+														wault={waultC}
+													/>
+												</span>
+											</UpperText>
+											{/* <LowerText>Daily %</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
-											<UpperText>180%</UpperText>
-											<LowerText>APR</LowerText>
+											<UpperText>Days</UpperText>
+											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0.05</UpperText>
-											<LowerText>Min Deposit</LowerText>
+											<UpperText>60</UpperText>
+											{/* <LowerText>Min Deposit</LowerText> */}
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer style={{ marginTop: '1rem' }}>
+										<ItemContent>
+											<UpperText>Min Deposit</UpperText>
+											{/* <LowerText>APR</LowerText> */}
+										</ItemContent>
+										<ItemContent>
+											<UpperText>0.05 BNB</UpperText>
+											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
 											<ItemInput
-												value={level2Value}
-												onChange={(e) => setLevel2Value(e.target.value)}
+												value={level0Value}
+												onChange={(e) => setLevel0Value(e.target.value)}
 												placeholder="Enter amount"
 												inputProps={{ 'aria-label': 'enter bnb amount' }}
 											/>
 										</ItemContent>
+									</ItemContainer>
+									<ItemContainer>
 										<ItemContent>
 											<ItemButton
 												color="secondary"
-												onClick={() => deposit(levels[2])}
+												onClick={() => deposit(levels[0])}
 												variant="contained"
 											>
 												Deposit
@@ -267,42 +495,83 @@ const PoolCards = () => {
 						</Grid>
 						{/* Wault 4 */}
 						<Grid item xs={12} md={6} lg={3}>
-							<ItemHeading>Wault D</ItemHeading>
+							<ItemHeading sx={{ color: 'white !important' }}>
+								Wault D
+							</ItemHeading>
 							<ItemSection>
 								<Item>
-									<ItemContainer>
+									<ItemContainer
+										sx={{
+											marginBottom: '1rem',
+											paddingTop: '24px',
+											paddingBottom: '16px',
+											background: 'rgb(38, 39, 43)',
+										}}
+									>
 										<ItemContent>
-											<UpperText>120</UpperText>
-											<LowerText>Days</LowerText>
+											<ItemHeading>Earn BNB</ItemHeading>
+											<LowerText>2.5% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<UpperText>2.5%</UpperText>
-											<LowerText>Daily %</LowerText>
+											<Image src="./bnc1.svg" />
+										</ItemContent>
+									</ItemContainer>
+									<ItemContainer>
+										<ItemContent>
+											<UpperText>APR</UpperText>
+											{/* <LowerText>Days</LowerText> */}
+										</ItemContent>
+										<ItemContent>
+											<UpperText>
+												<span>
+													300%
+													<CalculatorModal
+														sx={{
+															cursor: 'pointer',
+															fontSize: '1.3rem',
+														}}
+														wault={waultD}
+													/>
+												</span>
+											</UpperText>
+											{/* <LowerText>Daily %</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
-											<UpperText>300%</UpperText>
-											<LowerText>APR</LowerText>
+											<UpperText>Days</UpperText>
+											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0.05</UpperText>
-											<LowerText>Min Deposit</LowerText>
+											<UpperText>120</UpperText>
+											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
+									<ItemContainer style={{ marginTop: '1rem' }}>
+										<ItemContent>
+											<UpperText>Min Deposit</UpperText>
+											{/* <LowerText>APR</LowerText> */}
+										</ItemContent>
+										<ItemContent>
+											<UpperText>0.05 BNB</UpperText>
+											{/* <LowerText>Min Deposit</LowerText> */}
+										</ItemContent>
+									</ItemContainer>{' '}
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
 											<ItemInput
-												value={level3Value}
-												onChange={(e) => setLevel3Value(e.target.value)}
+												value={level0Value}
+												onChange={(e) => setLevel0Value(e.target.value)}
 												placeholder="Enter amount"
 												inputProps={{ 'aria-label': 'enter bnb amount' }}
 											/>
 										</ItemContent>
+									</ItemContainer>
+									<ItemContainer>
 										<ItemContent>
 											<ItemButton
 												color="secondary"
-												onClick={() => deposit(levels[3])}
+												onClick={() => deposit(levels[0])}
 												variant="contained"
 											>
 												Deposit

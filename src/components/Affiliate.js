@@ -40,6 +40,13 @@ const themeAffiliate = createTheme({
 				},
 			},
 		},
+		MuiCard: {
+			styleOverrides: {
+				root: {
+					background: 'rgb(19, 20, 25) !important',
+				},
+			},
+		},
 	},
 })
 
@@ -90,7 +97,7 @@ const Affiliate = () => {
 								component="form"
 								sx={{
 									borderRadius: '16px',
-									background: '#1e1e1e',
+									background: 'rgb(38, 39, 43)',
 									p: '1rem',
 									display: 'inline-block',
 									alignItems: 'center',
@@ -114,7 +121,8 @@ const Affiliate = () => {
 									value={referralUrl}
 									sx={{
 										flex: 1,
-										background: '#2c2a2a',
+										background:
+											'linear-gradient(rgb(97, 103, 116) 0%, rgb(64, 63, 76) 100%)',
 										p: '10px',
 										borderRadius: '4px',
 										width: '80%',
@@ -126,7 +134,10 @@ const Affiliate = () => {
 									onClick={() => {
 										navigator.clipboard.writeText(referralUrl)
 									}}
-									sx={{ p: '10px' }}
+									sx={{
+										p: '10px',
+										color: '#fff',
+									}}
 									aria-label="menu"
 									variant="contained"
 									color="secondary"
