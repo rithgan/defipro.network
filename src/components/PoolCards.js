@@ -30,6 +30,7 @@ const HeadText = styled(Typography)(() => ({
 	[theme.breakpoints.down('md')]: {
 		visibility: 'hidden',
 	},
+	paddingBottom: '16px',
 }))
 
 const ItemHeading = styled(`h4`)(() => ({
@@ -129,7 +130,7 @@ const waultA = {
 		i: '4.943',
 	},
 }
-const waultB = {
+const waultD = {
 	row1: {
 		d: '1',
 		r: '4%',
@@ -173,7 +174,7 @@ const waultC = {
 		i: '13.30',
 	},
 }
-const waultD = {
+const waultB = {
 	row1: {
 		d: '1',
 		r: '2.5%',
@@ -338,7 +339,7 @@ const PoolCards = () => {
 									>
 										<ItemContent>
 											<ItemHeading>Earn BNB</ItemHeading>
-											<LowerText>4% Daily ROI</LowerText>
+											<LowerText>2.5% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
 											<Image src="./bnc1.svg" />
@@ -352,7 +353,7 @@ const PoolCards = () => {
 										<ItemContent>
 											<UpperText>
 												<span>
-													120%
+													300%
 													<CalculatorModal
 														sx={{
 															cursor: 'pointer',
@@ -371,7 +372,7 @@ const PoolCards = () => {
 											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>30</UpperText>
+											<UpperText>120</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
@@ -514,7 +515,7 @@ const PoolCards = () => {
 									>
 										<ItemContent>
 											<ItemHeading>Earn BNB</ItemHeading>
-											<LowerText>2.5% Daily ROI</LowerText>
+											<LowerText>4% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
 											<Image src="./bnc1.svg" />
@@ -528,7 +529,7 @@ const PoolCards = () => {
 										<ItemContent>
 											<UpperText>
 												<span>
-													300%
+													120%
 													<CalculatorModal
 														sx={{
 															cursor: 'pointer',
@@ -547,7 +548,7 @@ const PoolCards = () => {
 											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>120</UpperText>
+											<UpperText>30</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
