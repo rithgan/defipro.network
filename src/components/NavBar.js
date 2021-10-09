@@ -5,6 +5,7 @@ import { styled, ThemeProvider } from '@mui/material/styles'
 import modal from '../modal'
 import { theme } from './theme'
 import PropTypes from 'prop-types'
+import '../styles/Styles.css'
 
 // const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 // 	width: 62,
@@ -75,23 +76,23 @@ const NavBar = ({ toggleColorMode }) => {
 					<AppBar position="static" sx={{ backgroundColor: 'rgb(19, 20, 25)' }}>
 						<Toolbar sx={{ justifyContent: 'space-between' }}>
 							<div>
-								<Button color="inherit">
-									<img src="./logo.png" alt="logo" width="48px" />
-									<Typography
-										variant="h6"
-										component="div"
-										sx={{
-											flexGrow: 1,
-											letterSpacing: '0.1rem',
-											textTransform: 'uppercase',
-											fontWeight: '700',
-											marginLeft: '1px',
-											fontSize: '1.5rem',
-										}}
-									>
-										{' '}
-										BitFarms
-									</Typography>
+								<Button color="inherit" sx={{ padding: 'none !important' }}>
+									<img src="./logo.svg" alt="logo" className="img" />
+									{/* <Typography */}
+									{/* 	variant="h6" */}
+									{/* 	component="div" */}
+									{/* 	sx={{ */}
+									{/* 		flexGrow: 1, */}
+									{/* 		letterSpacing: '0.1rem', */}
+									{/* 		textTransform: 'uppercase', */}
+									{/* 		fontWeight: '700', */}
+									{/* 		marginLeft: '1px', */}
+									{/* 		fontSize: '1.5rem', */}
+									{/* 	}} */}
+									{/* > */}
+									{/* 	{' '} */}
+									{/* 	BitFarms */}
+									{/* </Typography> */}
 								</Button>
 							</div>
 							{/* <MaterialUISwitch */}

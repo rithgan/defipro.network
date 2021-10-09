@@ -27,6 +27,9 @@ const HeadText = styled(Typography)(() => ({
 	lineHeight: '2.225rem',
 	fontWeight: '500',
 	color: '#fff',
+	[theme.breakpoints.down('md')]: {
+		visibility: 'hidden',
+	},
 }))
 
 const ItemHeading = styled(`h4`)(() => ({
@@ -77,6 +80,7 @@ const UpperText = styled(Typography)(({ theme }) => ({
 	textAlign: 'start',
 	paddingLeft: '1.875rem',
 	color: 'white',
+	marginTop: '12px',
 }))
 const LowerText = styled(Typography)(({ theme }) => ({
 	...theme.typography.body2,
@@ -139,7 +143,7 @@ const waultB = {
 	row3: {
 		d: '30',
 		r: '224.3%',
-		i: '2,243',
+		i: '2.243',
 	},
 	row4: {
 		d: '90',
@@ -148,28 +152,6 @@ const waultB = {
 	},
 }
 const waultC = {
-	row1: {
-		d: '1',
-		r: '3.5%',
-		i: '0.035',
-	},
-	row2: {
-		d: '7',
-		r: '27.2%',
-		i: '0.272',
-	},
-	row3: {
-		d: '30',
-		r: '180.7%',
-		i: '1.807',
-	},
-	row4: {
-		d: '90',
-		r: '2111.2%',
-		i: '21.112',
-	},
-}
-const waultD = {
 	row1: {
 		d: '1',
 		r: '3%',
@@ -188,7 +170,29 @@ const waultD = {
 	row4: {
 		d: '90',
 		r: '1330%',
-		i: '13.3',
+		i: '13.30',
+	},
+}
+const waultD = {
+	row1: {
+		d: '1',
+		r: '2.5%',
+		i: '0.025',
+	},
+	row2: {
+		d: '7',
+		r: '18.9%',
+		i: '0.189',
+	},
+	row3: {
+		d: '30',
+		r: '109.8%',
+		i: '1.098',
+	},
+	row4: {
+		d: '90',
+		r: '822.9%',
+		i: '8.229',
 	},
 }
 
@@ -384,8 +388,8 @@ const PoolCards = () => {
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
 											<ItemInput
-												value={level0Value}
-												onChange={(e) => setLevel0Value(e.target.value)}
+												value={level1Value}
+												onChange={(e) => setLevel1Value(e.target.value)}
 												placeholder="Enter amount"
 												inputProps={{ 'aria-label': 'enter bnb amount' }}
 											/>
@@ -395,7 +399,7 @@ const PoolCards = () => {
 										<ItemContent>
 											<ItemButton
 												color="secondary"
-												onClick={() => deposit(levels[0])}
+												onClick={() => deposit(levels[1])}
 												variant="contained"
 											>
 												Deposit
@@ -472,8 +476,8 @@ const PoolCards = () => {
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
 											<ItemInput
-												value={level0Value}
-												onChange={(e) => setLevel0Value(e.target.value)}
+												value={level2Value}
+												onChange={(e) => setLevel2Value(e.target.value)}
 												placeholder="Enter amount"
 												inputProps={{ 'aria-label': 'enter bnb amount' }}
 											/>
@@ -483,7 +487,7 @@ const PoolCards = () => {
 										<ItemContent>
 											<ItemButton
 												color="secondary"
-												onClick={() => deposit(levels[0])}
+												onClick={() => deposit(levels[2])}
 												variant="contained"
 											>
 												Deposit
@@ -560,8 +564,8 @@ const PoolCards = () => {
 									<ItemContainer style={{ marginTop: '1rem' }}>
 										<ItemContent>
 											<ItemInput
-												value={level0Value}
-												onChange={(e) => setLevel0Value(e.target.value)}
+												value={level3Value}
+												onChange={(e) => setLevel3Value(e.target.value)}
 												placeholder="Enter amount"
 												inputProps={{ 'aria-label': 'enter bnb amount' }}
 											/>
@@ -571,7 +575,7 @@ const PoolCards = () => {
 										<ItemContent>
 											<ItemButton
 												color="secondary"
-												onClick={() => deposit(levels[0])}
+												onClick={() => deposit(levels[3])}
 												variant="contained"
 											>
 												Deposit

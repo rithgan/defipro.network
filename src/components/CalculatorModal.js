@@ -9,11 +9,31 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import TableFooter from '@mui/material/TableFooter'
 import Paper from '@mui/material/Paper'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import ExposureIcon from '@mui/icons-material/Exposure'
 import PropTypes from 'prop-types'
+import '../styles/Styles.css'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { theme } from './theme'
+import '../styles/Styles.css'
+
+const themeModal = createTheme({
+  ...theme,
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgb(26, 27, 32) !important',
+          backgroundImage: 'none !important',
+          boxShadow: 'none !important',
+        },
+      },
+    },
+  },
+})
 
 const style = {
   position: 'absolute',
@@ -21,20 +41,27 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   // width: 800,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: 'rgb(26, 27, 32)',
+  // border: '2px solid #000',
   boxShadow: 24,
   p: 4,
   color: 'white',
+  borderRadius: '22px',
+}
+const tableCellStyle = {
+  fontSize: '1.25rem',
+  borderBottom: 'none',
+}
+
+const tableTopStyle = {
+  fontSize: '1.25rem',
+  padding: '28px 14px',
 }
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein }
 }
 
-const tableCellStyle = {
-  fontSize: '1.25rem',
-}
 export default function CalculatorModal({ wault }) {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
@@ -51,89 +78,122 @@ export default function CalculatorModal({ wault }) {
   ]
 
   return (
-    <div style={{ display: 'inline', position: 'absolute' }}>
+    <div
+      style={{
+        display: 'inline',
+        position: 'absolute',
+        height: '0px',
+      }}
+      className="icon-container"
+    >
       <ExposureIcon
         sx={{
           height: 'fit-content',
           cursor: 'pointer',
-          // position: 'absolute',
+          position: 'relative',
           fontSize: '1.3rem',
         }}
         onClick={handleOpen}
       />
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          {/* <Typography id="modal-modal-title" variant="h2" component="h2"> */}
-          {/*   History */}
-          {/* </Typography> */}
-          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}> */}
-          {/*   Duis mollis, est non commodo luctus, nisi erat porttitor ligula. */}
-          {/* </Typography> */}
-          <AppBar position="static">
-            <Toolbar>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{ flexGrow: 1, fontSize: '1.5rem', padding: '1rem' }}
+      <ThemeProvider theme={themeModal}>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className="modal-box">
+            {/* <Typography id="modal-modal-title" variant="h2" component="h2"> */}
+            {/*   History */}
+            {/* </Typography> */}
+            {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}> */}
+            {/*   Duis mollis, est non commodo luctus, nisi erat porttitor ligula. */}
+            {/* </Typography> */}
+            <AppBar position="static">
+              <Toolbar
+                sx={{
+                  borderBottom: '0.5px solid #726d6d',
+                }}
               >
-                ROI
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell sx={tableCellStyle} align="center">
-                    Days
-                  </TableCell>
-                  {/* <TableCell>Dessert (100g serving)</TableCell> */}
-                  <TableCell sx={tableCellStyle} align="center">
-                    ROI
-                  </TableCell>
-                  <TableCell sx={tableCellStyle} align="center">
-                    Income per BNB
-                  </TableCell>
-                  {/* <TableCell align="right">Carbs&nbsp;(g)</TableCell> */}
-                  {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow
-                    key={row.name}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    {/* <TableCell component="th" scope="row"> */}
-                    {/*   {row.name} */}
-                    {/* </TableCell> */}
-                    <TableCell
-                      sx={tableCellStyle}
-                      component="th"
-                      scope="row"
-                      align="center"
-                    >
-                      {row.calories}
+                <Typography
+                  variant="h6"
+                  component="div"
+                  sx={{
+                    flexGrow: 1,
+                    fontSize: '1.5rem',
+                    padding: '1rem 0rem',
+                  }}
+                >
+                  ROI Calculator
+                </Typography>
+              </Toolbar>
+            </AppBar>
+            <TableContainer component={Paper}>
+              <Table
+                // sx={{ minWidth: 650 }}
+                className="table"
+                aria-label="simple table"
+              >
+                <TableHead>
+                  <TableRow>
+                    <TableCell sx={tableTopStyle} align="center">
+                      Days
                     </TableCell>
-                    <TableCell sx={tableCellStyle} align="center">
-                      {row.fat}
+                    {/* <TableCell>Dessert (100g serving)</TableCell> */}
+                    <TableCell sx={tableTopStyle} align="center">
+                      ROI
                     </TableCell>
-                    <TableCell sx={tableCellStyle} align="center">
-                      {row.carbs}
+                    <TableCell sx={tableTopStyle} align="center">
+                      Income per
+                      <br /> 1 BNB
                     </TableCell>
-                    {/* <TableCell align="right">{row.protein}</TableCell> */}
+                    {/* <TableCell align="right">Carbs&nbsp;(g)</TableCell> */}
+                    {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
-      </Modal>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <TableRow
+                      key={row.name}
+                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                      {/* <TableCell component="th" scope="row"> */}
+                      {/*   {row.name} */}
+                      {/* </TableCell> */}
+                      <TableCell
+                        sx={tableCellStyle}
+                        component="th"
+                        scope="row"
+                        align="center"
+                      >
+                        {row.calories}
+                      </TableCell>
+                      <TableCell sx={tableCellStyle} align="center">
+                        {row.fat}
+                      </TableCell>
+                      <TableCell sx={tableCellStyle} align="center">
+                        {row.carbs}
+                      </TableCell>
+                      {/* <TableCell align="right">{row.protein}</TableCell> */}
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              <TableFooter
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <em className="footer">
+                  Calculated based on compounding 1x daily
+                </em>
+              </TableFooter>
+            </TableContainer>
+          </Box>
+        </Modal>
+      </ThemeProvider>
     </div>
   )
 }
