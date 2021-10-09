@@ -12,7 +12,7 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
-import { getTotalUserDeposit, getEarnedBnb } from '../contract'
+import { getTotalUserWithdrawn, getEarnedBnb } from '../contract'
 import PropTypes from 'prop-types'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { theme } from './theme'
@@ -70,7 +70,7 @@ export default function HistoryModal() {
 
   let totalDeposit = getEarnedBnb().then((res) => setTotal(res))
 
-  let totalReferral = getTotalUserDeposit().then((res) => setReferral(res))
+  let totalReferral = getTotalUserWithdrawn().then((res) => setReferral(res))
 
   const rows = [
     createData(
@@ -118,11 +118,11 @@ export default function HistoryModal() {
                 <TableHead>
                   <TableRow>
                     <TableCell sx={tableTopStyle} align="center">
-                      Total Deposit
+                      Total Withdrawn
                     </TableCell>
                     {/* <TableCell>Dessert (100g serving)</TableCell> */}
                     <TableCell sx={tableTopStyle} align="center">
-                      Total Withdrawn
+                      Referall Earning
                     </TableCell>
                     {/* <TableCell align="right">Carbs&nbsp;(g)</TableCell> */}
                     {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
