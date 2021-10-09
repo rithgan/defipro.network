@@ -13,6 +13,7 @@ import {
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import modal from '../modal'
 import { theme } from './theme'
+import '../styles/Styles.css'
 
 const themeAffiliate = createTheme({
 	...theme,
@@ -127,7 +128,7 @@ const Affiliate = () => {
 										borderRadius: '4px',
 										width: '80%',
 									}}
-									placeholder="Referall link"
+									placeholder="Referral link"
 									inputProps={{ 'aria-label': 'search google maps' }}
 								/>
 								<Button
@@ -135,9 +136,10 @@ const Affiliate = () => {
 										navigator.clipboard.writeText(referralUrl)
 									}}
 									sx={{
-										p: '10px',
+										p: '9px',
 										color: '#fff',
 									}}
+									className="copy"
 									aria-label="menu"
 									variant="contained"
 									color="secondary"
