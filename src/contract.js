@@ -95,6 +95,19 @@ export const getTotalUserDeposit = async () => {
 	let web3 = await modal()
 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
 	let result = bnbContract.methods
+		.getUserTotalDeposits(fromAddr)
+		.call()
+		.then((res) => res)
+	return result
+
+	// console.log(value)
+}
+
+export const getTotalUserWithdrawn = async () => {
+	let bnbContract = await contract()
+	let web3 = await modal()
+	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+	let result = bnbContract.methods
 		.getUserTotalWithdrawn(fromAddr)
 		.call()
 		.then((res) => res)
