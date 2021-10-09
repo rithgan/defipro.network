@@ -135,10 +135,10 @@ const Affiliate = () => {
 									onClick={() => {
 										navigator.clipboard.writeText(referralUrl)
 									}}
-									sx={{
-										p: '9px',
-										color: '#fff',
-									}}
+									// sx={{
+									// 	p: '9px',
+									// 	color: '#fff',
+									// }}
 									className="copy"
 									aria-label="menu"
 									variant="contained"

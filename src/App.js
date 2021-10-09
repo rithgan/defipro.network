@@ -48,7 +48,7 @@ function App() {
               {/* <Grid item md={12}> */}
               {/*   <Head /> */}
               {/* </Grid> */}
-              <Grid item sm={12} md={6} sx={{ marginTop: '16px' }}>
+              <Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
                 <ItemPaper>
                   <Typography variant="h5" sx={{ textAlign: 'center' }}>
                     Total Value Deposited
@@ -58,7 +58,20 @@ function App() {
                   </Typography>
                 </ItemPaper>
               </Grid>
-              <Grid item sm={12} md={6} sx={{ marginTop: '16px' }}>
+              <Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
+                <ItemPaper>
+                  <Typography variant="h5" sx={{ textAlign: 'center' }}>
+                    Total BFM mint
+                  </Typography>
+                  <Typography variant="h5" sx={{ textAlign: 'center' }}>
+                    {((total / 1000000000000000000) * 5)
+                      .toString()
+                      .slice(0, 10)}{' '}
+                    BNB
+                  </Typography>
+                </ItemPaper>
+              </Grid>
+              <Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
                 <ItemPaper>
                   <Typography variant="h5" sx={{ textAlign: 'center' }}>
                     User Total Deposit
