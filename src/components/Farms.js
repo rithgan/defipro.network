@@ -143,7 +143,7 @@ const Farms = () => {
 										color="secondary"
 										variant="contained"
 									>
-										<HistoryModal earnedBNB={earnedBNB} total={total} />
+										<HistoryModal />
 									</Button>
 								</Typography>
 								{/* <Typography variant="body3" color="text.secondary"> */}

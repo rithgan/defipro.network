@@ -78,7 +78,7 @@ export default function CalculatorModal({ wault }) {
   ]
 
   return (
-    <div
+    <span
       style={{
         display: 'inline',
         position: 'absolute',
@@ -117,7 +117,7 @@ export default function CalculatorModal({ wault }) {
               >
                 <Typography
                   variant="h6"
-                  component="div"
+                  component="span"
                   sx={{
                     flexGrow: 1,
                     fontSize: '1.5rem',
@@ -194,7 +194,7 @@ export default function CalculatorModal({ wault }) {
           </Box>
         </Modal>
       </ThemeProvider>
-    </div>
+    </span>
   )
 }
 
