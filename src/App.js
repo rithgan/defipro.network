@@ -6,6 +6,7 @@ import PoolCards from './components/PoolCards'
 import Affiliate from './components/Affiliate'
 import Disclaimer from './components/Disclaimer'
 import Stats from './components/Stats'
+import Footer from './components/Footer'
 // import Head from './components/Head'
 import { Box, Grid, Typography, Paper } from '@mui/material'
 import './App.css'
@@ -17,7 +18,7 @@ import {
 } from '@mui/material/styles'
 import { getTotalDeposit, getTotalUserDeposit } from './contract'
 
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
+// const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
 
 const ItemPaper = styled(Paper)(() => ({
   margin: '1rem',
@@ -28,9 +29,9 @@ const ItemPaper = styled(Paper)(() => ({
   boxShadow: '0 0 8px 2px rgb(0 0 0 / 8%)',
 }))
 
-function App() {
-  const theme = useTheme()
-  const colorMode = React.useContext(ColorModeContext)
+export default function App() {
+  // const theme = useTheme()
+  // const colorMode = React.useContext(ColorModeContext)
 
   const [total, setTotal] = useState(0)
   const [referral, setReferral] = useState(0)
@@ -40,7 +41,9 @@ function App() {
   return (
     // <PoolCards />
     <div className="App">
-      <NavBar toggleColorMode={colorMode.toggleColorMode} />
+      <NavBar
+      // toggleColorMode={colorMode.toggleColorMode}
+      />
       <Box sx={{ flexGrow: 1, background: 'rgb(26, 27, 32)' }}>
         <section className="main-section">
           <div className="container">
@@ -95,7 +98,9 @@ function App() {
               {/* <Grid item md={8}> */}
               {/*   <Disclaimer /> */}
               {/* </Grid> */}
-              <Grid item md={4}></Grid>
+              <Grid item md={12} sx={{ width: '100%' }}>
+                <Footer />
+              </Grid>
             </Grid>
           </div>
         </section>
@@ -104,32 +109,32 @@ function App() {
   )
 }
 
-export default function ToggleColorMode() {
-  const [mode, setMode] = React.useState('light')
-  const colorMode = React.useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
-      },
-    }),
-    []
-  )
-
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-      }),
-    [mode]
-  )
-
-  return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </ColorModeContext.Provider>
-  )
-}
+// export default function ToggleColorMode() {
+//   const [mode, setMode] = React.useState('light')
+//   const colorMode = React.useMemo(
+//     () => ({
+//       toggleColorMode: () => {
+//         setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
+//       },
+//     }),
+//     []
+//   )
+//
+//   const theme = React.useMemo(
+//     () =>
+//       createTheme({
+//         palette: {
+//           mode,
+//         },
+//       }),
+//     [mode]
+//   )
+//
+//   return (
+//     <ColorModeContext.Provider value={colorMode}>
+//       <ThemeProvider theme={theme}>
+//         <App />
+//       </ThemeProvider>
+//     </ColorModeContext.Provider>
+//   )
+// }
