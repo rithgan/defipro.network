@@ -53,9 +53,7 @@ const themeAffiliate = createTheme({
 })
 
 const Affiliate = () => {
-	const [referralUrl, setReferralUrl] = useState(
-		`http://${window.location.host}?r=`
-	)
+	const [referralUrl, setReferralUrl] = useState('')
 	const [copy, setCopy] = useState('Copy')
 	//
 	// 	setReferralUrl(async () => {
