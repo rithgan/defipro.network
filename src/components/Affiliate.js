@@ -9,6 +9,7 @@ import {
 	Button,
 	// TextField,
 	InputBase,
+	Modal,
 } from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import modal from '../modal'
@@ -70,6 +71,9 @@ const Affiliate = () => {
 	window.onload = function () {
 		setReferralUrl('')
 	}
+
+	// const showModal = () => setCopy('Copiiii')
+
 	return (
 		<>
 			{/* <ThemeProvider theme={theme}> */}
@@ -136,11 +140,15 @@ const Affiliate = () => {
 								/>
 								<Button
 									onClick={() => {
-										navigator.clipboard.writeText(referralUrl)
-										setCopy('Copied')
-										setTimeout(() => {
-											setCopy('Copy')
-										}, 5000)
+										navigator.clipboard
+											.writeText(referralUrl)
+											.then(() => {
+												setCopy('Copied')
+												setTimeout(() => {
+													setCopy('Copy')
+												}, 5000)
+											})
+											.catch((err) => setCopy('Copy Failed'))
 									}}
 									// sx={{
 									// 	p: '9px',

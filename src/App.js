@@ -64,13 +64,13 @@ export default function App() {
               <Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
                 <ItemPaper>
                   <Typography variant="h5" sx={{ textAlign: 'center' }}>
-                    Total BFM mint
+                    Total BFM Mint
                   </Typography>
                   <Typography variant="h5" sx={{ textAlign: 'center' }}>
                     {((total / 1000000000000000000) * 5)
                       .toString()
                       .slice(0, 10)}{' '}
-                    BNB
+                    BFM
                   </Typography>
                 </ItemPaper>
               </Grid>
