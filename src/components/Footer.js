@@ -12,7 +12,7 @@ const style = {
 	letterSpacing: '1px',
 	textDecoration: 'underlined',
 	width: '100%',
-	color: '#10a3d7',
+	color: '#fff',
 }
 const Footer = () => {
 	return (
