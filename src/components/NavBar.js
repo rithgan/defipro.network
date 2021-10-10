@@ -125,7 +125,7 @@ const NavBar = ({ toggleColorMode }) => {
 }
 
 NavBar.propTypes = {
-	toggleColorMode: PropTypes.function,
+	toggleColorMode: PropTypes.func,
 }
 
 export default NavBar

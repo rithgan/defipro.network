@@ -52,7 +52,10 @@ const themeAffiliate = createTheme({
 })
 
 const Affiliate = () => {
-	const [referralUrl, setReferralUrl] = useState('')
+	const [referralUrl, setReferralUrl] = useState(
+		`http://${window.location.host}?r=`
+	)
+	const [copy, setCopy] = useState('Copy')
 	//
 	// 	setReferralUrl(async () => {
 	// 		let web3 = await modal()
@@ -134,6 +137,10 @@ const Affiliate = () => {
 								<Button
 									onClick={() => {
 										navigator.clipboard.writeText(referralUrl)
+										setCopy('Copied')
+										setTimeout(() => {
+											setCopy('Copy')
+										}, 5000)
 									}}
 									// sx={{
 									// 	p: '9px',
@@ -144,7 +151,7 @@ const Affiliate = () => {
 									variant="contained"
 									color="secondary"
 								>
-									Copy
+									{copy}
 								</Button>
 							</Paper>
 						</div>
