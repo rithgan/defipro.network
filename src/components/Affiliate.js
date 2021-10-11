@@ -146,7 +146,7 @@ const Affiliate = () => {
 													setCopy('Copy')
 												}, 5000)
 											})
-											.catch((err) => setCopy('Copy Failed'))
+											.catch((err) => setCopy('Copy Manually'))
 									}}
 									// sx={{
 									// 	p: '9px',
