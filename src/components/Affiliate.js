@@ -15,6 +15,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles'
 import modal from '../modal'
 import { theme } from './theme'
 import '../styles/Styles.css'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 const themeAffiliate = createTheme({
 	...theme,
@@ -71,6 +72,12 @@ const Affiliate = () => {
 	}
 
 	// const showModal = () => setCopy('Copiiii')
+	const handleCopy = () => {
+		setCopy('Copied')
+		setTimeout(() => {
+			setCopy('Copy')
+		}, 5000)
+	}
 
 	return (
 		<>
@@ -133,32 +140,35 @@ const Affiliate = () => {
 										borderRadius: '4px',
 										width: '80%',
 									}}
+									id="copyLink"
 									placeholder="Referral link"
 									inputProps={{ 'aria-label': 'search google maps' }}
 								/>
-								<Button
-									onClick={() => {
-										navigator.clipboard
-											.writeText(referralUrl)
-											.then(() => {
-												setCopy('Copied')
-												setTimeout(() => {
-													setCopy('Copy')
-												}, 5000)
-											})
-											.catch((err) => setCopy('Copy Manually'))
-									}}
-									// sx={{
-									// 	p: '9px',
-									// 	color: '#fff',
-									// }}
-									className="copy"
-									aria-label="menu"
-									variant="contained"
-									color="secondary"
-								>
-									{copy}
-								</Button>
+								<CopyToClipboard text={referralUrl} onCopy={() => handleCopy()}>
+									<Button
+										// onClick={() => {
+										// 	navigator.clipboard
+										// 		.writeText(referralUrl)
+										// 		.then(() => {
+										// 			setCopy('Copied')
+										// 			setTimeout(() => {
+										// 				setCopy('Copy')
+										// 			}, 5000)
+										// 		})
+										// 		.catch((err) => setCopy('Copy Manually'))
+										// }}
+										// sx={{
+										// 	p: '9px',
+										// 	color: '#fff',
+										// }}
+										className="copy"
+										aria-label="menu"
+										variant="contained"
+										color="secondary"
+									>
+										{copy}
+									</Button>
+								</CopyToClipboard>
 							</Paper>
 						</div>
 						{/* <CardContent> */}

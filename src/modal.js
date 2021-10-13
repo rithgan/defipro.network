@@ -26,6 +26,7 @@ const modal = async () => {
 						'trust',
 						'imtoken',
 						'pillar',
+						'safepal',
 					],
 					desktopLinks: ['encrypted ink'],
 				},
