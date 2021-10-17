@@ -13,11 +13,7 @@ let contract = async () => {
 	return bnbContract
 }
 
-//args - value,level(0,1,2,3),fromAddr, toAddr is smart contract address
 export const stakeContract = async (value, level, fromAddr) => {
-	// 	let web3 = await modal()
-	//
-	// 	let contract = new web3.eth.Contract(abi, addr)
 	let bnbContract = await contract()
 	let regx = /([0x])\w+/
 	let referralAddr = regx.exec(window.location.search)
@@ -121,7 +117,7 @@ export const getTotalUserEarnings = async () => {
 	let web3 = await modal()
 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
 	let result = bnbContract.methods
-		.getUserDividends(fromAddr)
+		.getUserAvailable(fromAddr)
 		.call()
 		.then((res) => res)
 	return result
@@ -129,7 +125,7 @@ export const getTotalUserEarnings = async () => {
 
 export const getTotalWithdrawal = async () => {
 	let web3 = await modal()
-	// let web3 = await modal()
+
 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
 	let result = web3.eth.getBalance(fromAddr).then((res) => res)
 
