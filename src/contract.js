@@ -121,7 +121,7 @@ export const getTotalUserEarnings = async () => {
 	let web3 = await modal()
 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
 	let result = bnbContract.methods
-		.getUserDividends(fromAddr)
+		.getUserAvailable(fromAddr)
 		.call()
 		.then((res) => res)
 	return result

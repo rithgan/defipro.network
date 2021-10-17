@@ -130,7 +130,7 @@ const Stats = () => {
 				>
 					<CardContent>
 						<Typography sx={{ marginTop: '0', marginBottom: '1rem' }}>
-							Invited users: {user}
+							Invited Users: {user}
 						</Typography>
 						<Typography sx={{ marginTop: '0' }}>
 							Referral Earnings:{' '}
