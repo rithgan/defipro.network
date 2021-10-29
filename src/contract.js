@@ -2,7 +2,7 @@ import Web3 from 'web3'
 import modal from './modal'
 import bnbabi from './abi'
 
-const addr = '0xac07e4B30D3559774F18c028AfBad006291c8c3E'
+const addr = '0xac07e4B30D3559774F18c028AfBad006291c8c3E' //production
 const abi = bnbabi
 // const web3 = modal()
 
