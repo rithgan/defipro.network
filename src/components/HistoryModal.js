@@ -122,7 +122,7 @@ export default function HistoryModal() {
                     </TableCell>
                     {/* <TableCell>Dessert (100g serving)</TableCell> */}
                     <TableCell sx={tableTopStyle} align="center">
-                      Referall Earning
+                      Referral Earning
                     </TableCell>
                     {/* <TableCell align="right">Carbs&nbsp;(g)</TableCell> */}
                     {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
