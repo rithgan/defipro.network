@@ -79,19 +79,19 @@ export default function CalculatorModal({ wault }) {
 
   return (
     <span
-      style={{
-        display: 'inline',
-        position: 'absolute',
-        height: '0px',
-      }}
-      className="icon-container"
+    // style={{
+    //   display: 'inline',
+    //   position: 'absolute',
+    //   height: '0px',
+    // }}
+    // className="icon-container"
     >
       <ExposureIcon
         sx={{
-          height: 'fit-content',
+          height: '1.15rem',
           cursor: 'pointer',
-          position: 'relative',
-          fontSize: '1.3rem',
+          //   position: 'relative',
+          // fontSize: '1.3rem',
         }}
         onClick={handleOpen}
       />

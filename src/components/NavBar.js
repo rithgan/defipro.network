@@ -17,6 +17,12 @@ const NavBar = ({ toggleColorMode }) => {
 		setAccount(addr)
 	}
 
+	useEffect(() => {
+		if (window.web3) {
+			connect()
+		}
+	}, [])
+
 	return (
 		<>
 			<ThemeProvider theme={theme}>
