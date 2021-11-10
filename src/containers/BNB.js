@@ -62,7 +62,7 @@ const BNB = () => {
 				</ItemPaper>
 			</Grid>
 			<Grid item>
-				<PoolCards />
+				<PoolCards token="BNB" />
 			</Grid>
 			<Grid item xs={12} sm={12} md={4}>
 				<Farms />

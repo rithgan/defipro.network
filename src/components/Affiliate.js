@@ -65,7 +65,14 @@ const Affiliate = () => {
 	useEffect(async () => {
 		let web3 = await modal()
 		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
-		setReferralUrl(() => 'http://' + window.location.host + '?r=' + fromAddr)
+		setReferralUrl(
+			() =>
+				'http://' +
+				window.location.host +
+				window.location.pathname +
+				'?r=' +
+				fromAddr
+		)
 	}, [referralUrl])
 	window.onload = function () {
 		setReferralUrl('')

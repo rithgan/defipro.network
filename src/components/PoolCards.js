@@ -17,6 +17,7 @@ import modal from '../modal'
 import { theme } from './theme'
 import Image from './WaultImage'
 import CalculatorModal from './CalculatorModal'
+import PropTypes from 'prop-types'
 
 const levels = [0, 1, 2, 3]
 
@@ -196,7 +197,7 @@ const waultB = {
 	},
 }
 
-const PoolCards = () => {
+const PoolCards = ({ token }) => {
 	const [level0Value, setLevel0Value] = useState('')
 	const [level1Value, setLevel1Value] = useState('')
 	const [level2Value, setLevel2Value] = useState('')
@@ -221,7 +222,9 @@ const PoolCards = () => {
 		}
 		let web3 = await modal()
 		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
-		if (value >= 0.05 && fromAddr !== '') stakeContract(value, level, fromAddr)
+		if (value >= 0.05 && fromAddr !== '') {
+			stakeContract(value, level, fromAddr)
+		}
 	}
 	return (
 		<>
@@ -231,7 +234,7 @@ const PoolCards = () => {
 				>
 					<Grid sx={{ paddingTop: '16px' }} container spacing={2} mt={1}>
 						<Grid item md={12}>
-							<HeadText>Stake BNB</HeadText>
+							<HeadText>Stake {token}</HeadText>
 						</Grid>
 						{/* Wault 1 */}
 						<Grid item xs={12} md={6} lg={3}>
@@ -249,7 +252,7 @@ const PoolCards = () => {
 										}}
 									>
 										<ItemContent>
-											<ItemHeading>Earn BNB</ItemHeading>
+											<ItemHeading>Earn {token}</ItemHeading>
 											<LowerText>2% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
@@ -293,7 +296,7 @@ const PoolCards = () => {
 											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0.05 BNB</UpperText>
+											<UpperText>0.05 {token}</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
@@ -337,7 +340,7 @@ const PoolCards = () => {
 										}}
 									>
 										<ItemContent>
-											<ItemHeading>Earn BNB</ItemHeading>
+											<ItemHeading>Earn {token}</ItemHeading>
 											<LowerText>2.5% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
@@ -381,7 +384,7 @@ const PoolCards = () => {
 											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0.05 BNB</UpperText>
+											<UpperText>0.05 {token}</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
@@ -425,7 +428,7 @@ const PoolCards = () => {
 										}}
 									>
 										<ItemContent>
-											<ItemHeading>Earn BNB</ItemHeading>
+											<ItemHeading>Earn {token}</ItemHeading>
 											<LowerText>3% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
@@ -469,7 +472,7 @@ const PoolCards = () => {
 											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0.05 BNB</UpperText>
+											<UpperText>0.05 {token}</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
@@ -513,7 +516,7 @@ const PoolCards = () => {
 										}}
 									>
 										<ItemContent>
-											<ItemHeading>Earn BNB</ItemHeading>
+											<ItemHeading>Earn {token}</ItemHeading>
 											<LowerText>4% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
@@ -557,7 +560,7 @@ const PoolCards = () => {
 											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0.05 BNB</UpperText>
+											<UpperText>0.05 {token}</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>{' '}
@@ -590,6 +593,10 @@ const PoolCards = () => {
 			</ThemeProvider>
 		</>
 	)
+}
+
+PoolCards.propTypes = {
+	token: PropTypes.string,
 }
 
 export default PoolCards
