@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useMemo, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import NavBar from './components/NavBar'
 import Farms from './components/Farms'
-// import Pools from './components/Pools'
 import PoolCards from './components/PoolCards'
 import Affiliate from './components/Affiliate'
 import Disclaimer from './components/Disclaimer'
 import Stats from './components/Stats'
 import Footer from './components/Footer'
-// import Head from './components/Head'
 import { Box, Grid, Typography, Paper } from '@mui/material'
 import './App.css'
 import {
@@ -17,8 +15,6 @@ import {
   styled,
 } from '@mui/material/styles'
 import { getTotalDeposit, getTotalUserDeposit } from './contract'
-
-// const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
 
 const ItemPaper = styled(Paper)(() => ({
   margin: '1rem',
@@ -30,27 +26,18 @@ const ItemPaper = styled(Paper)(() => ({
 }))
 
 export default function App() {
-  // const theme = useTheme()
-  // const colorMode = React.useContext(ColorModeContext)
-
   const [total, setTotal] = useState(0)
   const [referral, setReferral] = useState(0)
 
   let totalDeposit = getTotalDeposit().then((res) => setTotal(res))
   let totalReferral = getTotalUserDeposit().then((res) => setReferral(res))
   return (
-    // <PoolCards />
     <div className="App">
-      <NavBar
-      // toggleColorMode={colorMode.toggleColorMode}
-      />
+      <NavBar />
       <Box sx={{ flexGrow: 1, background: 'rgb(26, 27, 32)' }}>
         <section className="main-section">
           <div className="container">
             <Grid container spacing={4}>
-              {/* <Grid item md={12}> */}
-              {/*   <Head /> */}
-              {/* </Grid> */}
               <Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
                 <ItemPaper>
                   <Typography variant="h5" sx={{ textAlign: 'center' }}>
@@ -95,9 +82,7 @@ export default function App() {
               <Grid item xs={12} sm={12} md={8}>
                 <Affiliate />
               </Grid>
-              {/* <Grid item md={8}> */}
-              {/*   <Disclaimer /> */}
-              {/* </Grid> */}
+
               <Grid item md={12} sx={{ width: '100%' }}>
                 <Footer />
               </Grid>
@@ -108,33 +93,3 @@ export default function App() {
     </div>
   )
 }
-
-// export default function ToggleColorMode() {
-//   const [mode, setMode] = React.useState('light')
-//   const colorMode = React.useMemo(
-//     () => ({
-//       toggleColorMode: () => {
-//         setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
-//       },
-//     }),
-//     []
-//   )
-//
-//   const theme = React.useMemo(
-//     () =>
-//       createTheme({
-//         palette: {
-//           mode,
-//         },
-//       }),
-//     [mode]
-//   )
-//
-//   return (
-//     <ColorModeContext.Provider value={colorMode}>
-//       <ThemeProvider theme={theme}>
-//         <App />
-//       </ThemeProvider>
-//     </ColorModeContext.Provider>
-//   )
-// }

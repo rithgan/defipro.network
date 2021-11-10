@@ -15,7 +15,6 @@ import { styled, ThemeProvider } from '@mui/material/styles'
 import { stakeContract } from '../contract'
 import modal from '../modal'
 import { theme } from './theme'
-// import ExposureIcon from '@mui/icons-material/Exposure'
 import Image from './WaultImage'
 import CalculatorModal from './CalculatorModal'
 

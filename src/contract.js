@@ -1,15 +1,15 @@
 import Web3 from 'web3'
 import modal from './modal'
-import bnbabi from './abi'
+import bnbabi from './bnbabi'
 
 const addr = '0x0042dC93997D14De820e481F602a6d33D52523E4' //development
-const abi = bnbabi
+const bnb = bnbabi
 // const web3 = modal()
 
 let contract = async () => {
 	let web3 = await modal()
 
-	let bnbContract = new web3.eth.Contract(abi, addr)
+	let bnbContract = new web3.eth.Contract(bnb, addr)
 	return bnbContract
 }
 

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Box, AppBar, Toolbar, Typography, Button, Switch } from '@mui/material'
-import chainContract from '../contract'
 import { styled, ThemeProvider } from '@mui/material/styles'
 import modal from '../modal'
 import { theme } from './theme'
