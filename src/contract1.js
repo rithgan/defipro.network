@@ -7,9 +7,6 @@ import busdTokenabi from './busdTokenabi'
 const addr = '0x35E58aAa00DD758049093ED7076478f5094c6d8A' //development
 const busd = busdabi
 
-const token = '0xAC212351dC5E1d056D5a36E00A62BA748CbF694c' //development
-const tokenabi = busdTokenabi
-
 //BUSD contracts
 let contractBUSD = async () => {
 	let web3 = await modal()
@@ -18,27 +15,7 @@ let contractBUSD = async () => {
 	return busdContract
 }
 
-let tokenBUSD = async () => {
-	let web3 = await modal()
-	let busdToken = new web3.eth.Contract(tokenabi, token)
-	return busdToken
-}
-
 //BUSD functions
-export const approveContract = async (value, fromAddr) => {
-	let busdContract = await tokenBUSD()
-	console.log(busdContract.methods)
-	console.log(fromAddr)
-	let uint256 = value * 1000000000000000000
-
-	busdContract.methods
-		.approve('0x35E58aAa00DD758049093ED7076478f5094c6d8A')
-		.send({
-			// value: uint256,
-			from: '0x35E58aAa00DD758049093ED7076478f5094c6d8A',
-		})
-		.then((res) => console.log(res))
-}
 
 export const stakeContractBusd = async (value, level, fromAddr) => {
 	let busdContract = await contractBUSD()
@@ -46,24 +23,27 @@ export const stakeContractBusd = async (value, level, fromAddr) => {
 	let referralAddr = regx.exec(window.location.search)
 	console.log(referralAddr)
 	console.log(busdContract.methods)
+	let val0 = value * 1000000000000000000
+	let uint256 = val0.toString()
+	let val = Web3.utils.toWei(uint256)
 	if (referralAddr !== null) {
 		let refAddr = referralAddr[0].toString()
 		console.log(refAddr)
 		busdContract.methods
-			.invest(refAddr, level)
+			.invest(refAddr, level, val)
 			.send({
-				value: value * 1000000000000000000,
+				// value: val,
 				from: fromAddr,
 				// gasPrice: '100000000',
 			})
 			.then((res) => {
-				return console.log()
+				return console.log(res)
 			})
 	} else {
 		busdContract.methods
-			.invest(addr, level)
+			.invest(addr, level, val)
 			.send({
-				value: value * 1000000000000000000,
+				// value: val,
 				from: fromAddr,
 				// gasPrice: '100000000',
 			})
