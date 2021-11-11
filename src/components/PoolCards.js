@@ -13,6 +13,8 @@ import {
 } from '@mui/material'
 import { styled, ThemeProvider } from '@mui/material/styles'
 import { stakeContract } from '../contract'
+import { stakeContractBusd } from '../contract1'
+import { approveContract } from '../contract2'
 import modal from '../modal'
 import { theme } from './theme'
 import Image from './WaultImage'
@@ -222,8 +224,11 @@ const PoolCards = ({ token }) => {
 		}
 		let web3 = await modal()
 		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
-		if (value >= 0.05 && fromAddr !== '') {
-			stakeContract(value, level, fromAddr)
+		if (fromAddr !== '') {
+			token === 'BNB'
+				? stakeContract(value, level, fromAddr)
+				: approveContract(value, fromAddr)
+			// :stakeContractBusd(value,level,fromAddr)
 		}
 	}
 	return (

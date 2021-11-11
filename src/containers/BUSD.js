@@ -12,7 +12,7 @@ import {
 	createTheme,
 	styled,
 } from '@mui/material/styles'
-import { getTotalDeposit, getTotalUserDeposit } from '../contract'
+import { getTotalDeposit, getTotalUserDeposit } from '../contract1'
 
 const ItemPaper = styled(Paper)(() => ({
 	margin: '1rem',
