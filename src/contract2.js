@@ -18,7 +18,8 @@ export const approveContract = async (value, fromAddr) => {
 	let busdContract = await tokenBUSD()
 	console.log(busdContract.methods)
 	console.log(fromAddr)
-	let uint256 = 100000000000000000000
+	let uint256 = 100000000000000000000 //production amount
+	// let uint256 = 100000 //test amount
 	console.log(typeof uint256.toString())
 	// let val = uint256.toString()
 	let val0 = uint256.toString()
@@ -31,8 +32,38 @@ export const approveContract = async (value, fromAddr) => {
 			// gasLimit: 500000,
 			// value: 0,
 		})
-		.then((res) => res.status)
+		// .allowance(fromAddr, '0x35E58aAa00DD758049093ED7076478f5094c6d8A')
+		// .call()
 
-	console.log('res:' + response)
+		.then((res) => res)
+
+	console.log(response)
 	return response
+}
+
+export const checkApproveStatus = async (fromAddr) => {
+	let busdContract = await tokenBUSD()
+	let response = await busdContract.methods
+
+		.allowance(fromAddr, '0x35E58aAa00DD758049093ED7076478f5094c6d8A')
+		.call()
+		.then((res) => res)
+	console.log(response)
+	return response
+}
+
+export const getTotalWithdrawalBusd = async () => {
+	let busdContract = await tokenBUSD()
+
+	let web3 = await modal()
+
+	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+	let result = await busdContract.methods
+
+		.balanceOf(fromAddr)
+		.call()
+		.then((res) => res)
+	// let result = web3.eth.getBalance(fromAddr).then((res) => res)
+
+	return result
 }

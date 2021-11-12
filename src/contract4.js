@@ -25,7 +25,7 @@ export const approveContractBfm = async (value, fromAddr) => {
 	let val = Web3.utils.toWei(val0)
 	console.log(val)
 	let response = await bfmContract.methods
-		.approve('0x35E58aAa00DD758049093ED7076478f5094c6d8A', val)
+		.approve('0xecFf8a0bf363F34bDBF71E528b680E0432eb307b', val)
 		.send({
 			from: fromAddr,
 			// gasLimit: 500000,
@@ -35,4 +35,30 @@ export const approveContractBfm = async (value, fromAddr) => {
 
 	console.log('res:' + response)
 	return response
+}
+
+export const checkApproveStatusBfm = async (fromAddr) => {
+	let bfmContract = await tokenBFM()
+	let response = await bfmContract.methods
+		.allowance(fromAddr, '0xecFf8a0bf363F34bDBF71E528b680E0432eb307b')
+		.call()
+		.then((res) => res)
+	console.log(response)
+	return response
+}
+
+export const getTotalWithdrawalBfm = async () => {
+	let bfmContract = await tokenBFM()
+
+	let web3 = await modal()
+
+	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+	let result = await bfmContract.methods
+
+		.balanceOf(fromAddr)
+		.call()
+		.then((res) => res)
+	// let result = web3.eth.getBalance(fromAddr).then((res) => res)
+
+	return result
 }
