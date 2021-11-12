@@ -65,8 +65,8 @@ const BNB = () => {
 				<PoolCards token="BNB" />
 			</Grid>
 			<Grid item xs={12} sm={12} md={4}>
-				<Farms />
-				<Stats />
+				<Farms token="BNB" />
+				<Stats token="BNB" />
 			</Grid>
 		</>
 	)

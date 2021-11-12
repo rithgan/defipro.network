@@ -12,7 +12,7 @@ import {
 	createTheme,
 	styled,
 } from '@mui/material/styles'
-import { getTotalDeposit, getTotalUserDeposit } from '../contract'
+import { getTotalDepositBfm, getTotalUserDepositBfm } from '../contract3'
 
 const ItemPaper = styled(Paper)(() => ({
 	margin: '1rem',
@@ -26,8 +26,8 @@ const BFM = () => {
 	const [total, setTotal] = useState(0)
 	const [referral, setReferral] = useState(0)
 
-	let totalDeposit = getTotalDeposit().then((res) => setTotal(res))
-	let totalReferral = getTotalUserDeposit().then((res) => setReferral(res))
+	let totalDeposit = getTotalDepositBfm().then((res) => setTotal(res))
+	let totalReferral = getTotalUserDepositBfm().then((res) => setReferral(res))
 	return (
 		<>
 			{/* <Grid container spacing={4}> */}
@@ -65,8 +65,8 @@ const BFM = () => {
 				<PoolCards token="BFM" />
 			</Grid>
 			<Grid item xs={12} sm={12} md={4}>
-				<Farms />
-				<Stats />
+				<Farms token="BFM" />
+				<Stats token="BFM" />
 			</Grid>
 		</>
 	)
