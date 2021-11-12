@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from './components/NavBar'
-import Link from './components/Link'
+import Links from './components/Links'
 import Affiliate from './components/Affiliate'
 import Footer from './components/Footer'
 import { Box, Grid } from '@mui/material'
@@ -23,7 +23,7 @@ export default function App() {
               xs={12}
               sx={{ display: 'flex', justifyContent: 'center' }}
             >
-              <Link />
+              <Links />
             </Grid>
             <Grid container spacing={4}>
               <Routes>
