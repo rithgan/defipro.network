@@ -11,7 +11,10 @@ import {
 	InputBase,
 } from '@mui/material'
 import { getEarnedBnb, getInviteUsers } from '../contract'
+import { getEarnedBusd, getInviteUsersBusd } from '../contract1'
+import { getEarnedBfm, getInviteUsersBfm } from '../contract3'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import PropTypes from 'prop-types'
 
 import { theme } from './theme'
 
@@ -43,7 +46,7 @@ const themeStats = createTheme({
 	},
 })
 
-const Stats = () => {
+const Stats = ({ token }) => {
 	const [user, setUser] = useState(0)
 	const [total, setTotal] = useState(0)
 
@@ -110,8 +113,18 @@ const Stats = () => {
 	// 		const fetch = async () => await setDeposit(getTotalDeposit())
 	// 	}, [])
 	// 	console.log(user + ' state')
-	let totalDeposit = getEarnedBnb().then((res) => setTotal(res))
-	let users = getInviteUsers().then((res) => setUser(res))
+	let totalDeposit =
+		token === 'BNB'
+			? getEarnedBnb().then((res) => setTotal(res))
+			: token === 'BUSD'
+			? getEarnedBusd().then((res) => setTotal(res))
+			: getEarnedBfm().then((res) => setTotal(res))
+	let users =
+		token === 'BNB'
+			? getInviteUsers().then((res) => setUser(res))
+			: token === 'BUSD'
+			? getInviteUsersBusd().then((res) => setUser(res))
+			: getInviteUsersBfm().then((res) => setUser(res))
 
 	return (
 		<ThemeProvider theme={themeStats}>
@@ -134,7 +147,7 @@ const Stats = () => {
 						</Typography>
 						<Typography sx={{ marginTop: '0' }}>
 							Referral Earnings:{' '}
-							{(total / 1000000000000000000).toString().slice(0, 10)} BNB
+							{(total / 1000000000000000000).toString().slice(0, 10)} {token}
 						</Typography>
 						{/* <Typography sx={{ marginTop: '0', marginBottom: '1rem' }}> */}
 						{/* 	{`Total Referral Deposit: 0 BNB`} */}
@@ -147,6 +160,10 @@ const Stats = () => {
 			</Box>
 		</ThemeProvider>
 	)
+}
+
+Stats.propTypes = {
+	token: PropTypes.string,
 }
 
 export default Stats

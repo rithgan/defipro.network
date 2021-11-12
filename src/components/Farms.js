@@ -13,9 +13,24 @@ import {
 	getTotalUserDeposit,
 	getEarnedBnb,
 } from '../contract'
+import {
+	harvestContractBusd,
+	getTotalUserEarningsBusd,
+	getTotalWithdrawalBusd,
+	getTotalUserDepositBusd,
+	getEarnedBusd,
+} from '../contract1'
+import {
+	harvestContractBfm,
+	getTotalUserEarningsBfm,
+	getTotalWithdrawalBfm,
+	getTotalUserDepositBfm,
+	getEarnedBfm,
+} from '../contract3'
 import modal from '../modal'
 import { theme } from './theme'
 import HistoryModal from './HistoryModal'
+import PropTypes from 'prop-types'
 
 const themeFarm = createTheme({
 	...theme,
@@ -46,23 +61,45 @@ const themeFarm = createTheme({
 	},
 })
 
-const Farms = () => {
+const Farms = ({ token }) => {
 	const [toHarvest, setToHarvest] = useState(0)
 	const [withdraw, setWithdraw] = useState(0)
 	const [earnedBNB, setReferral] = useState(0)
 	const [total, setTotal] = useState(0)
 
-	let totalDeposit = getEarnedBnb().then((res) => setTotal(res))
+	let totalDeposit =
+		token === 'BNB'
+			? getEarnedBnb().then((res) => setTotal(res))
+			: token === 'BUSD'
+			? getEarnedBusd().then((res) => setTotal(res))
+			: getEarnedBfm().then((res) => setTotal(res))
 
-	let totalReferral = getTotalUserDeposit().then((res) => setReferral(res))
+	let totalReferral =
+		token === 'BNB'
+			? getTotalUserDeposit().then((res) => setReferral(res))
+			: token === 'BUSD'
+			? getTotalUserDepositBusd().then((res) => setReferral(res))
+			: getTotalUserDepositBfm().then((res) => setReferral(res))
 
 	const harvest = async () => {
 		let web3 = await modal()
 		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
-		fromAddr !== '' ? harvestContract(fromAddr) : null
+		fromAddr !== '' && token === 'BNB' ? harvestContract(fromAddr) : null
+		fromAddr !== '' && token === 'BUSD' ? harvestContractBusd(fromAddr) : null
+		fromAddr !== '' && token === 'Bfm' ? harvestContractBfm(fromAddr) : null
 	}
-	let totalHarvest = getTotalUserEarnings().then((res) => setToHarvest(res))
-	let totalWithdraw = getTotalWithdrawal().then((res) => setWithdraw(res))
+	let totalHarvest =
+		token === 'BNB'
+			? getTotalUserEarnings().then((res) => setToHarvest(res))
+			: token === 'BUSD'
+			? getTotalUserEarningsBusd().then((res) => setToHarvest(res))
+			: getTotalUserEarningsBfm().then((res) => setToHarvest(res))
+	let totalWithdraw =
+		token === 'BNB'
+			? getTotalWithdrawal().then((res) => setWithdraw(res))
+			: token === 'BUSD'
+			? getTotalWithdrawalBusd().then((res) => setWithdraw(res))
+			: getTotalWithdrawalBfm().then((res) => setWithdraw(res))
 
 	return (
 		<>
@@ -86,7 +123,7 @@ const Farms = () => {
 						<CardContent sx={{ padding: '0px' }}>
 							<CardContent>
 								<Typography variant="body3" component="p">
-									BNB to Harvest:
+									{token} to Harvest:
 								</Typography>
 								<Typography
 									sx={{
@@ -100,7 +137,7 @@ const Farms = () => {
 									color="text.secondary"
 								>
 									{(toHarvest / 1000000000000000000).toString().slice(0, 10)}{' '}
-									BNB
+									{token}
 									<Button
 										onClick={harvest}
 										sx={{
@@ -120,7 +157,7 @@ const Farms = () => {
 							</CardContent>
 							<CardContent>
 								<Typography variant="body3" component="p">
-									BNB to Wallet:
+									{token} to Wallet:
 								</Typography>
 								<Typography
 									sx={{
@@ -133,7 +170,8 @@ const Farms = () => {
 									variant="body2"
 									color="text.secondary"
 								>
-									{(withdraw / 1000000000000000000).toString().slice(0, 10)} BNB
+									{(withdraw / 1000000000000000000).toString().slice(0, 10)}{' '}
+									{token}
 									<Button
 										sx={{
 											marginLeft: '.5rem',
@@ -157,6 +195,10 @@ const Farms = () => {
 			{/* </ThemeProvider> */}
 		</>
 	)
+}
+
+Farms.propTypes = {
+	token: PropTypes.string,
 }
 
 export default Farms
