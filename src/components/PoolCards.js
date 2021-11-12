@@ -14,7 +14,9 @@ import {
 import { styled, ThemeProvider } from '@mui/material/styles'
 import { stakeContract } from '../contract'
 import { stakeContractBusd } from '../contract1'
-import { approveContract } from '../contract2'
+import { stakeContractBfm } from '../contract3'
+import { approveContract, checkApproveStatus } from '../contract2'
+import { approveContractBfm, checkApproveStatusBfm } from '../contract4'
 import modal from '../modal'
 import { theme } from './theme'
 import Image from './WaultImage'
@@ -199,11 +201,28 @@ const waultB = {
 	},
 }
 
-const PoolCards = ({ token }) => {
+const PoolCards = ({ token, approved }) => {
 	const [level0Value, setLevel0Value] = useState('')
 	const [level1Value, setLevel1Value] = useState('')
 	const [level2Value, setLevel2Value] = useState('')
 	const [level3Value, setLevel3Value] = useState('')
+	// const approve = async () => {
+	// 	let value
+	// 	let status
+	// 	// let response
+	// 	let web3 = await modal()
+	// 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+	// 	if (fromAddr !== '')
+	// 		status = approveContract(value, fromAddr).then((res) =>
+	// 			stakeContractBusd(value, level, fromAddr)
+	// 		)
+	// 	// console.log(response)
+	// }
+	// console.log(status)
+	// const status = checkApproveStatus(
+	// 	'0x809ef2A48455EE591C3C69d177bAd58A5988db6e'
+	// ).then((res) => setApproved(res))
+	// status > 0 ? console.log(true) : console.log(false)
 	const deposit = async (level) => {
 		let value
 		switch (level) {
@@ -224,11 +243,33 @@ const PoolCards = ({ token }) => {
 		}
 		let web3 = await modal()
 		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
-		if (fromAddr !== '') {
-			token === 'BNB'
-				? stakeContract(value, level, fromAddr)
-				: approveContract(value, fromAddr)
-			// :stakeContractBusd(value,level,fromAddr)
+		if (value >= 0.05 && fromAddr !== '') {
+			// token === 'BNB'
+			// 	? stakeContract(value, level, fromAddr)
+			// 	: // : checkApproveStatus(fromAddr)
+			// 	// ? approveContract(value, fromAddr)
+			// 	approved
+			// 	? stakeContractBusd(value, level, fromAddr)
+			// 	: approveContract(value, fromAddr)
+
+			switch (token) {
+				case 'BNB':
+					stakeContract(value, level, fromAddr)
+					break
+				case 'BUSD':
+					approved
+						? stakeContractBusd(value, level, fromAddr)
+						: approveContract(value, fromAddr)
+					break
+
+				case 'BFM':
+					approved
+						? stakeContractBfm(value, level, fromAddr)
+						: approveContractBfm(value, fromAddr)
+					break
+				default:
+					null
+			}
 		}
 	}
 	return (
@@ -301,7 +342,9 @@ const PoolCards = ({ token }) => {
 											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0.05 {token}</UpperText>
+											<UpperText>
+												{token === 'BFM' ? '0.05' : '1'} {token}
+											</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
@@ -322,7 +365,9 @@ const PoolCards = ({ token }) => {
 												onClick={() => deposit(levels[0])}
 												variant="contained"
 											>
-												Deposit
+												{approved && (token === 'BUSD' || token === 'BFM')
+													? 'Deposit'
+													: 'Approve'}
 											</ItemButton>
 										</ItemContent>
 									</ItemContainer>
@@ -389,7 +434,9 @@ const PoolCards = ({ token }) => {
 											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0.05 {token}</UpperText>
+											<UpperText>
+												{token === 'BFM' ? '0.05' : '1'} {token}
+											</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
@@ -410,7 +457,9 @@ const PoolCards = ({ token }) => {
 												onClick={() => deposit(levels[1])}
 												variant="contained"
 											>
-												Deposit
+												{approved && (token === 'BUSD' || token === 'BFM')
+													? 'Deposit'
+													: 'Approve'}
 											</ItemButton>
 										</ItemContent>
 									</ItemContainer>
@@ -477,7 +526,9 @@ const PoolCards = ({ token }) => {
 											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0.05 {token}</UpperText>
+											<UpperText>
+												{token === 'BFM' ? '0.05' : '1'} {token}
+											</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>
@@ -498,7 +549,9 @@ const PoolCards = ({ token }) => {
 												onClick={() => deposit(levels[2])}
 												variant="contained"
 											>
-												Deposit
+												{approved && (token === 'BUSD' || token === 'BFM')
+													? 'Deposit'
+													: 'Approve'}
 											</ItemButton>
 										</ItemContent>
 									</ItemContainer>
@@ -565,7 +618,9 @@ const PoolCards = ({ token }) => {
 											{/* <LowerText>APR</LowerText> */}
 										</ItemContent>
 										<ItemContent>
-											<UpperText>0.05 {token}</UpperText>
+											<UpperText>
+												{token === 'BFM' ? '0.05' : '1'} {token}
+											</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
 									</ItemContainer>{' '}
@@ -586,7 +641,9 @@ const PoolCards = ({ token }) => {
 												onClick={() => deposit(levels[3])}
 												variant="contained"
 											>
-												Deposit
+												{approved && (token === 'BUSD' || token === 'BFM')
+													? 'Deposit'
+													: 'Approve'}
 											</ItemButton>
 										</ItemContent>
 									</ItemContainer>
@@ -602,6 +659,7 @@ const PoolCards = ({ token }) => {
 
 PoolCards.propTypes = {
 	token: PropTypes.string,
+	approved: PropTypes.bool,
 }
 
 export default PoolCards
