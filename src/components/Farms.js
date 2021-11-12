@@ -16,17 +16,19 @@ import {
 import {
 	harvestContractBusd,
 	getTotalUserEarningsBusd,
-	getTotalWithdrawalBusd,
+	// getTotalWithdrawalBusd,
 	getTotalUserDepositBusd,
 	getEarnedBusd,
 } from '../contract1'
 import {
 	harvestContractBfm,
 	getTotalUserEarningsBfm,
-	getTotalWithdrawalBfm,
+	// getTotalWithdrawalBfm,
 	getTotalUserDepositBfm,
 	getEarnedBfm,
 } from '../contract3'
+import { getTotalWithdrawalBusd } from '../contract2'
+import { getTotalWithdrawalBfm } from '../contract4'
 import modal from '../modal'
 import { theme } from './theme'
 import HistoryModal from './HistoryModal'
