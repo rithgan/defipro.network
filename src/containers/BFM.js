@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Grid, Typography, Paper } from '@mui/material'
 import Farms from '../components/Farms'
 import PoolCards from '../components/PoolCards'
@@ -13,6 +13,8 @@ import {
 	styled,
 } from '@mui/material/styles'
 import { getTotalDepositBfm, getTotalUserDepositBfm } from '../contract3'
+import { checkApproveStatusBfm } from '../contract4'
+import modal from '../modal'
 
 const ItemPaper = styled(Paper)(() => ({
 	margin: '1rem',
@@ -25,9 +27,19 @@ const ItemPaper = styled(Paper)(() => ({
 const BFM = () => {
 	const [total, setTotal] = useState(0)
 	const [referral, setReferral] = useState(0)
+	const [approved, setApproved] = useState(false)
 
 	let totalDeposit = getTotalDepositBfm().then((res) => setTotal(res))
 	let totalReferral = getTotalUserDepositBfm().then((res) => setReferral(res))
+	useEffect(async () => {
+		let web3 = await modal()
+		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+		if (window.web3) {
+			checkApproveStatusBfm(fromAddr).then((res) =>
+				res > 0 ? setApproved(true) : null
+			)
+		}
+	}, [])
 	return (
 		<>
 			{/* <Grid container spacing={4}> */}
@@ -62,7 +74,7 @@ const BFM = () => {
 				</ItemPaper>
 			</Grid>
 			<Grid item>
-				<PoolCards token="BFM" />
+				<PoolCards token="BFM" approved={approved} />
 			</Grid>
 			<Grid item xs={12} sm={12} md={4}>
 				<Farms token="BFM" />
