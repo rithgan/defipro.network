@@ -53,7 +53,7 @@ export const stakeContractBusd = async (value, level, fromAddr) => {
 	}
 }
 
-export const harvestContract = async (fromAddr) => {
+export const harvestContractBusd = async (fromAddr) => {
 	let busdContract = await contractBUSD()
 	busdContract.methods
 		.withdraw()
@@ -63,7 +63,7 @@ export const harvestContract = async (fromAddr) => {
 		.then((res) => console.log(res))
 }
 
-export const getInviteUsers = async () => {
+export const getInviteUsersBusd = async () => {
 	let busdContract = await contractBUSD()
 	let web3 = await modal()
 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
@@ -74,7 +74,7 @@ export const getInviteUsers = async () => {
 	return result
 }
 
-export const getEarnedBnb = async () => {
+export const getEarnedBusd = async () => {
 	let busdContract = await contractBUSD()
 	let web3 = await modal()
 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
@@ -85,7 +85,7 @@ export const getEarnedBnb = async () => {
 	return result
 }
 
-export const getTotalDeposit = async () => {
+export const getTotalDepositBusd = async () => {
 	let busdContract = await contractBUSD()
 
 	let result = busdContract.methods
@@ -96,7 +96,7 @@ export const getTotalDeposit = async () => {
 
 	// console.log(value)
 }
-export const getTotalUserDeposit = async () => {
+export const getTotalUserDepositBusd = async () => {
 	let busdContract = await contractBUSD()
 	let web3 = await modal()
 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
@@ -109,7 +109,7 @@ export const getTotalUserDeposit = async () => {
 	// console.log(value)
 }
 
-export const getTotalUserWithdrawn = async () => {
+export const getTotalUserWithdrawnBusd = async () => {
 	let busdContract = await contractBUSD()
 	let web3 = await modal()
 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
@@ -122,7 +122,7 @@ export const getTotalUserWithdrawn = async () => {
 	// console.log(value)
 }
 
-export const getTotalUserEarnings = async () => {
+export const getTotalUserEarningsBusd = async () => {
 	let busdContract = await contractBUSD()
 	let web3 = await modal()
 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
@@ -133,7 +133,7 @@ export const getTotalUserEarnings = async () => {
 	return result
 }
 
-export const getTotalWithdrawal = async () => {
+export const getTotalWithdrawalBusd = async () => {
 	let web3 = await modal()
 
 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
