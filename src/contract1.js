@@ -25,7 +25,7 @@ export const stakeContractBusd = async (value, level, fromAddr) => {
 	console.log(busdContract.methods)
 	let val0 = value * 1000000000000000000
 	let uint256 = val0.toString()
-	let val = Web3.utils.toWei(uint256)
+	let val = Web3.utils.toBN(uint256)
 	if (referralAddr !== null) {
 		let refAddr = referralAddr[0].toString()
 		console.log(refAddr)
@@ -133,11 +133,11 @@ export const getTotalUserEarningsBusd = async () => {
 	return result
 }
 
-export const getTotalWithdrawalBusd = async () => {
-	let web3 = await modal()
-
-	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
-	let result = web3.eth.getBalance(fromAddr).then((res) => res)
-
-	return result
-}
+// export const getTotalWithdrawalBusd = async () => {
+// 	let web3 = await modal()
+//
+// 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+// 	let result = web3.eth.getBalance(fromAddr).then((res) => res)
+//
+// 	return result
+// }

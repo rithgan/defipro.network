@@ -4,7 +4,7 @@ import bfmabi from './bfmabi'
 import bfmTokenabi from './bfmTokenabi'
 
 // BFM addr and abi
-const addr = '0x11d4d0b5a63D77d9F0e405364c26De7eca239F02' //development
+const addr = '0xecFf8a0bf363F34bDBF71E528b680E0432eb307b' //development
 const bfm = bfmabi
 
 //BFM contracts
@@ -25,7 +25,7 @@ export const stakeContractBfm = async (value, level, fromAddr) => {
 	console.log(bfmContract.methods)
 	let val0 = value * 1000000000000000000
 	let uint256 = val0.toString()
-	let val = Web3.utils.toWei(uint256)
+	let val = Web3.utils.toBN(uint256)
 	if (referralAddr !== null) {
 		let refAddr = referralAddr[0].toString()
 		console.log(refAddr)
@@ -133,11 +133,11 @@ export const getTotalUserEarningsBfm = async () => {
 	return result
 }
 
-export const getTotalWithdrawalBfm = async () => {
-	let web3 = await modal()
-
-	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
-	let result = web3.eth.getBalance(fromAddr).then((res) => res)
-
-	return result
-}
+// export const getTotalWithdrawalBfm = async () => {
+// 	let web3 = await modal()
+//
+// 	let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
+// 	let result = web3.eth.getBalance(fromAddr).then((res) => res)
+//
+// 	return result
+// }
