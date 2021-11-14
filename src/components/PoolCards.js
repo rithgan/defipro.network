@@ -302,7 +302,15 @@ const PoolCards = ({ token, approved }) => {
 											<LowerText>2% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<Image src="./bnc1.svg" />
+											<Image
+												src={
+													token === 'BNB'
+														? './bnc1.svg'
+														: token === 'BUSD'
+														? './BUSDWault.svg'
+														: './BFMWault.svg'
+												}
+											/>
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer>
@@ -343,7 +351,8 @@ const PoolCards = ({ token, approved }) => {
 										</ItemContent>
 										<ItemContent>
 											<UpperText>
-												{token === 'BFM' ? '0.05' : '1'} {token}
+												{token === 'BFM' || token === 'BNB' ? '0.05' : '1'}{' '}
+												{token}
 											</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
@@ -365,7 +374,9 @@ const PoolCards = ({ token, approved }) => {
 												onClick={() => deposit(levels[0])}
 												variant="contained"
 											>
-												{approved && (token === 'BUSD' || token === 'BFM')
+												{token === 'BNB'
+													? 'Deposit'
+													: approved && (token === 'BUSD' || token === 'BFM')
 													? 'Deposit'
 													: 'Approve'}
 											</ItemButton>
@@ -394,7 +405,15 @@ const PoolCards = ({ token, approved }) => {
 											<LowerText>2.5% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<Image src="./bnc1.svg" />
+											<Image
+												src={
+													token === 'BNB'
+														? './bnc1.svg'
+														: token === 'BUSD'
+														? './BUSDWault.svg'
+														: './BFMWault.svg'
+												}
+											/>
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer>
@@ -435,7 +454,8 @@ const PoolCards = ({ token, approved }) => {
 										</ItemContent>
 										<ItemContent>
 											<UpperText>
-												{token === 'BFM' ? '0.05' : '1'} {token}
+												{token === 'BFM' || token === 'BNB' ? '0.05' : '1'}{' '}
+												{token}
 											</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
@@ -486,7 +506,15 @@ const PoolCards = ({ token, approved }) => {
 											<LowerText>3% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<Image src="./bnc1.svg" />
+											<Image
+												src={
+													token === 'BNB'
+														? './bnc1.svg'
+														: token === 'BUSD'
+														? './BUSDWault.svg'
+														: './BFMWault.svg'
+												}
+											/>
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer>
@@ -527,7 +555,8 @@ const PoolCards = ({ token, approved }) => {
 										</ItemContent>
 										<ItemContent>
 											<UpperText>
-												{token === 'BFM' ? '0.05' : '1'} {token}
+												{token === 'BFM' || token === 'BNB' ? '0.05' : '1'}{' '}
+												{token}
 											</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
@@ -578,7 +607,15 @@ const PoolCards = ({ token, approved }) => {
 											<LowerText>4% Daily ROI</LowerText>
 										</ItemContent>
 										<ItemContent>
-											<Image src="./bnc1.svg" />
+											<Image
+												src={
+													token === 'BNB'
+														? './bnc1.svg'
+														: token === 'BUSD'
+														? './BUSDWault.svg'
+														: './BFMWault.svg'
+												}
+											/>
 										</ItemContent>
 									</ItemContainer>
 									<ItemContainer>
@@ -619,7 +656,8 @@ const PoolCards = ({ token, approved }) => {
 										</ItemContent>
 										<ItemContent>
 											<UpperText>
-												{token === 'BFM' ? '0.05' : '1'} {token}
+												{token === 'BFM' || token === 'BNB' ? '0.05' : '1'}{' '}
+												{token}
 											</UpperText>
 											{/* <LowerText>Min Deposit</LowerText> */}
 										</ItemContent>
