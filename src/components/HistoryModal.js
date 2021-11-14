@@ -13,10 +13,13 @@ import Paper from '@mui/material/Paper'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import { getTotalUserWithdrawn, getEarnedBnb } from '../contract'
+import { getTotalUserWithdrawnBusd, getEarnedBusd } from '../contract1'
+import { getTotalUserWithdrawnBfm, getEarnedBfm } from '../contract3'
 import PropTypes from 'prop-types'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { theme } from './theme'
 import '../styles/Styles.css'
+// import PropTypes from 'prop-types'
 
 const themeModal = createTheme({
   ...theme,
@@ -61,16 +64,26 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein }
 }
 
-export default function HistoryModal() {
+export default function HistoryModal({ token }) {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const [earnedBNB, setReferral] = React.useState(0)
   const [total, setTotal] = React.useState(0)
 
-  let totalDeposit = getEarnedBnb().then((res) => setTotal(res))
+  let totalDeposit =
+    token === 'BNB'
+      ? getEarnedBnb().then((res) => setTotal(res))
+      : token === 'BUSD'
+      ? getEarnedBusd().then((res) => setTotal(res))
+      : getEarnedBfm().then((res) => setTotal(res))
 
-  let totalReferral = getTotalUserWithdrawn().then((res) => setReferral(res))
+  let totalReferral =
+    token === 'BNB'
+      ? getTotalUserWithdrawn().then((res) => setReferral(res))
+      : token === 'BUSD'
+      ? getTotalUserWithdrawnBusd().then((res) => setReferral(res))
+      : getTotalUserWithdrawnBfm().then((res) => setReferral(res))
 
   const rows = [
     createData(
@@ -163,6 +176,6 @@ export default function HistoryModal() {
 }
 
 HistoryModal.propTypes = {
-  earnedBNB: PropTypes.string,
-  total: PropTypes.string,
+  token: PropTypes.string,
+  // total: PropTypes.string,
 }

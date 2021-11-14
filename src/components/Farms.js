@@ -183,7 +183,7 @@ const Farms = ({ token }) => {
 										color="secondary"
 										variant="contained"
 									>
-										<HistoryModal />
+										<HistoryModal token={token} />
 									</Button>
 								</Typography>
 								{/* <Typography variant="body3" color="text.secondary"> */}
