@@ -16,6 +16,7 @@ import modal from '../modal'
 import { theme } from './theme'
 import '../styles/Styles.css'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import PropTypes from 'prop-types'
 
 const themeAffiliate = createTheme({
 	...theme,
@@ -53,7 +54,7 @@ const themeAffiliate = createTheme({
 	},
 })
 
-const Affiliate = () => {
+const Affiliate = ({ token }) => {
 	const [referralUrl, setReferralUrl] = useState('')
 	const [copy, setCopy] = useState('Copy')
 	//
@@ -192,6 +193,9 @@ const Affiliate = () => {
 			{/* </ThemeProvider> */}
 		</>
 	)
+}
+Affiliate.propTypes = {
+	token: PropTypes.string,
 }
 
 export default Affiliate
