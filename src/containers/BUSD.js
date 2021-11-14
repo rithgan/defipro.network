@@ -81,6 +81,9 @@ const BUSD = () => {
 				<Farms token="BUSD" />
 				<Stats token="BUSD" />
 			</Grid>
+			<Grid item xs={12} sm={12} md={8}>
+				<Affiliate />
+			</Grid>
 		</>
 	)
 }

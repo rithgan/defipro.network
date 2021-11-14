@@ -68,6 +68,9 @@ const BNB = () => {
 				<Farms token="BNB" />
 				<Stats token="BNB" />
 			</Grid>
+			<Grid item xs={12} sm={12} md={8}>
+				<Affiliate />
+			</Grid>
 		</>
 	)
 }
