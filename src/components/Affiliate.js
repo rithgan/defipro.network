@@ -68,7 +68,7 @@ const Affiliate = ({ token }) => {
 		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
 		setReferralUrl(
 			() =>
-				'http://' +
+				'https://' +
 				window.location.host +
 				window.location.pathname +
 				'?r=' +
