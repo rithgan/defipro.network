@@ -16,7 +16,7 @@ const themeLinks = createTheme({
 		MuiMenu: {
 			styleOverrides: {
 				paper: {
-					width: '148px',
+					width: '248px',
 					borderRadius: '16px !important',
 				},
 			},
@@ -26,15 +26,23 @@ const themeLinks = createTheme({
 
 const NavItems = ({ width }) => {
 	const tokens = useContext(tokensContext)
-	console.log(tokens)
+	// console.log(tokens)
 	let width1 = width.toString() + 'px'
 	const [anchorEl, setAnchorEl] = React.useState(null)
+	const [anchorEl2, setAnchorEl2] = React.useState(null)
 	const open = Boolean(anchorEl)
+	const open2 = Boolean(anchorEl2)
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget)
 	}
 	const handleClose = () => {
 		setAnchorEl(null)
+	}
+	const handleClick2 = (event) => {
+		setAnchorEl2(event.currentTarget)
+	}
+	const handleClose2 = () => {
+		setAnchorEl2(null)
 	}
 	return (
 		<>
@@ -58,32 +66,52 @@ const NavItems = ({ width }) => {
 					}}
 				>
 					<MenuItem onClick={handleClose}>
-						<Link to="/" class="link">
-							BNB
+						<Link to="/" className="link">
+							Earn BNB
 						</Link>
 					</MenuItem>
 					<MenuItem onClick={handleClose}>
-						<Link to="/busd" class="link">
-							BUSD
+						<Link to="/busd" className="link">
+							Earn BUSD
 						</Link>
 					</MenuItem>
 					<MenuItem onClick={handleClose}>
-						<Link to="/bfm" class="link">
-							BFM
+						<Link to="/bfm" className="link">
+							Earn BFM
 						</Link>
 					</MenuItem>
 				</Menu>
-				<Tooltip title="Coming Soon">
-					<Button
-						id="basic-button"
-						// aria-controls="basic-menu"
-						// aria-haspopup="true"
-						// aria-expanded={open ? 'true' : undefined}
-						// onClick={handleClick}
-					>
-						<span className="disable">Swap</span>
-					</Button>
-				</Tooltip>
+				{/* <Tooltip title="Coming Soon"> */}
+				<Button
+					id="basic-button"
+					aria-controls="basic-menu"
+					aria-haspopup="true"
+					aria-expanded={open2 ? 'true' : undefined}
+					onClick={handleClick2}
+				>
+					<span className="disable">Trade</span>
+				</Button>
+				<Menu
+					id="basic-menu"
+					anchorEl={anchorEl2}
+					open={open2}
+					onClose={handleClose2}
+					MenuListProps={{
+						'aria-labelledby': 'basic-button',
+					}}
+				>
+					<MenuItem onClick={handleClose2}>
+						<Link to="/" className="link">
+							Exchange(Coming soon)
+						</Link>
+					</MenuItem>
+					<MenuItem onClick={handleClose2}>
+						<Link to="/" className="link">
+							Liquidity(Coming soon)
+						</Link>
+					</MenuItem>
+				</Menu>
+				{/* </Tooltip> */}
 				{/* <span className="subnav"> */}
 				{/* 	<Button className="subnavbtn"> */}
 				{/* 		<span>Earn</span> */}
