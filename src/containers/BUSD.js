@@ -8,6 +8,7 @@ import Stats from '../components/Stats'
 import Footer from '../components/Footer'
 import { checkApproveStatus } from '../contract2'
 import modal from '../modal'
+import axios from 'axios'
 
 import {
 	useTheme,
@@ -41,6 +42,19 @@ const BUSD = () => {
 			)
 		}
 	}, [])
+
+	const [price, setPrice] = useState(0)
+
+	useEffect(async () => {
+		axios
+			// .get(
+			// 	'https://api.bscscan.com/api?module=stats&action=busdprice&apikey=DS72VSGKID323BV1QFNHNCZPBFCYJ1S6YY'
+			// )
+			.get('https://api.binance.com/api/v1/ticker/price?symbol=BUSDUSDT')
+			.then((res) => setPrice(res.data.price * 5))
+			.catch((err) => console.log(err))
+	}, [])
+	console.log(price)
 	return (
 		<>
 			{/* <Grid container spacing={4}> */}
@@ -51,6 +65,12 @@ const BUSD = () => {
 					</Typography>
 					<Typography variant="h5" sx={{ textAlign: 'center' }}>
 						{(total / 1000000000000000000).toString().slice(0, 10)} BUSD
+					</Typography>
+					<Typography
+						variant="h6"
+						sx={{ textAlign: 'center', color: '#c1c1c1' }}
+					>
+						{((price * total) / 1000000000000000000).toString().slice(0, 10)} $
 					</Typography>
 				</ItemPaper>
 			</Grid>
@@ -71,6 +91,13 @@ const BUSD = () => {
 					</Typography>
 					<Typography variant="h5" sx={{ textAlign: 'center' }}>
 						{(referral / 1000000000000000000).toString().slice(0, 10)} BUSD
+					</Typography>
+					<Typography
+						variant="h6"
+						sx={{ textAlign: 'center', color: '#c1c1c1' }}
+					>
+						{((price * referral) / 1000000000000000000).toString().slice(0, 10)}{' '}
+						$
 					</Typography>
 				</ItemPaper>
 			</Grid>

@@ -477,7 +477,9 @@ const PoolCards = ({ token, approved }) => {
 												onClick={() => deposit(levels[1])}
 												variant="contained"
 											>
-												{approved && (token === 'BUSD' || token === 'BFM')
+												{token === 'BNB'
+													? 'Deposit'
+													: approved && (token === 'BUSD' || token === 'BFM')
 													? 'Deposit'
 													: 'Approve'}
 											</ItemButton>
@@ -578,7 +580,9 @@ const PoolCards = ({ token, approved }) => {
 												onClick={() => deposit(levels[2])}
 												variant="contained"
 											>
-												{approved && (token === 'BUSD' || token === 'BFM')
+												{token === 'BNB'
+													? 'Deposit'
+													: approved && (token === 'BUSD' || token === 'BFM')
 													? 'Deposit'
 													: 'Approve'}
 											</ItemButton>
@@ -679,7 +683,9 @@ const PoolCards = ({ token, approved }) => {
 												onClick={() => deposit(levels[3])}
 												variant="contained"
 											>
-												{approved && (token === 'BUSD' || token === 'BFM')
+												{token === 'BNB'
+													? 'Deposit'
+													: approved && (token === 'BUSD' || token === 'BFM')
 													? 'Deposit'
 													: 'Approve'}
 											</ItemButton>

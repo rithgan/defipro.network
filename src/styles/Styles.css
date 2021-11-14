@@ -114,6 +114,7 @@
 	font-size: 0.975rem;
 	font-weight: 500;
 	margin-left: 2px;
+	cursor: pointer;
 }
 
 /*.disable {

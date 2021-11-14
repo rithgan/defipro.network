@@ -15,6 +15,7 @@ import {
 import { getTotalDepositBfm, getTotalUserDepositBfm } from '../contract3'
 import { checkApproveStatusBfm } from '../contract4'
 import modal from '../modal'
+import axios from 'axios'
 
 const ItemPaper = styled(Paper)(() => ({
 	margin: '1rem',
@@ -40,6 +41,19 @@ const BFM = () => {
 			)
 		}
 	}, [])
+
+	// 	const [price, setPrice] = useState(0)
+	//
+	// 	useEffect(() => {
+	// 		axios
+	// 			// .get(
+	// 			// 	'https://api.bscscan.com/api?module=stats&action=busdprice&apikey=DS72VSGKID323BV1QFNHNCZPBFCYJ1S6YY'
+	// 			// )
+	// 			.get('https://api.binance.com/api/v1/ticker/price?symbol=BNBUSDP')
+	// 			.then((res) => setPrice(res.data.price))
+	// 			.catch((err) => console.log(err))
+	// 	}, [])
+	// 	console.log(price)
 	return (
 		<>
 			{/* <Grid container spacing={4}> */}
