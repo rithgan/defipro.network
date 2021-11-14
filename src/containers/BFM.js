@@ -43,7 +43,7 @@ const BFM = () => {
 	return (
 		<>
 			{/* <Grid container spacing={4}> */}
-			<Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
+			<Grid item sm={12} md={6} sx={{ marginTop: '16px' }}>
 				<ItemPaper>
 					<Typography variant="h5" sx={{ textAlign: 'center' }}>
 						Total Value Deposited
@@ -53,17 +53,17 @@ const BFM = () => {
 					</Typography>
 				</ItemPaper>
 			</Grid>
-			<Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
-				<ItemPaper>
-					<Typography variant="h5" sx={{ textAlign: 'center' }}>
-						Total BFM Mint
-					</Typography>
-					<Typography variant="h5" sx={{ textAlign: 'center' }}>
-						{((total / 1000000000000000000) * 5).toString().slice(0, 10)} BFM
-					</Typography>
-				</ItemPaper>
-			</Grid>
-			<Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
+			{/* <Grid item sm={12} md={4} sx={{ marginTop: '16px' }}> */}
+			{/* 	<ItemPaper> */}
+			{/* 		<Typography variant="h5" sx={{ textAlign: 'center' }}> */}
+			{/* 			Total BFM Mint */}
+			{/* 		</Typography> */}
+			{/* 		<Typography variant="h5" sx={{ textAlign: 'center' }}> */}
+			{/* 			{((total / 1000000000000000000) * 5).toString().slice(0, 10)} BFM */}
+			{/* 		</Typography> */}
+			{/* 	</ItemPaper> */}
+			{/* </Grid> */}
+			<Grid item sm={12} md={6} sx={{ marginTop: '16px' }}>
 				<ItemPaper>
 					<Typography variant="h5" sx={{ textAlign: 'center' }}>
 						User Total Deposit
@@ -79,6 +79,9 @@ const BFM = () => {
 			<Grid item xs={12} sm={12} md={4}>
 				<Farms token="BFM" />
 				<Stats token="BFM" />
+			</Grid>
+			<Grid item xs={12} sm={12} md={8}>
+				<Affiliate />
 			</Grid>
 		</>
 	)
