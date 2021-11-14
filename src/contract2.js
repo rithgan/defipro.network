@@ -4,7 +4,7 @@ import busdTokenabi from './busdTokenabi'
 
 //BUSD token
 
-const token = '0xAC212351dC5E1d056D5a36E00A62BA748CbF694c' //development
+const token = '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56' //prod
 const tokenabi = busdTokenabi
 
 let tokenBUSD = async () => {

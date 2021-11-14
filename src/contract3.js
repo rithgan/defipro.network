@@ -4,7 +4,7 @@ import bfmabi from './bfmabi'
 import bfmTokenabi from './bfmTokenabi'
 
 // BFM addr and abi
-const addr = '0xecFf8a0bf363F34bDBF71E528b680E0432eb307b' //development
+const addr = '0x11d4d0b5a63D77d9F0e405364c26De7eca239F02' //prod
 const bfm = bfmabi
 
 //BFM contracts

@@ -4,7 +4,7 @@ import busdabi from './busdabi'
 import busdTokenabi from './busdTokenabi'
 
 // BUSD addr and abi
-const addr = '0x35E58aAa00DD758049093ED7076478f5094c6d8A' //development
+const addr = '0x2782912E53f7B3101FD8512130A61A2266bEFAEb' //prod
 const busd = busdabi
 
 //BUSD contracts

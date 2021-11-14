@@ -3,7 +3,7 @@ import modal from './modal'
 import bnbabi from './bnbabi'
 
 // BNB addr and abi
-const addr = '0x0042dC93997D14De820e481F602a6d33D52523E4' //development
+const addr = '0xac07e4B30D3559774F18c028AfBad006291c8c3E' //production
 const bnb = bnbabi
 
 //BNB contracts

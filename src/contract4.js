@@ -4,7 +4,7 @@ import bfmTokenabi from './bfmTokenabi'
 
 //BFM token
 
-const token = '0xd8e0e965b94C565f13b106F408D27ad7abfab698' //development
+const token = '0x4C2ddAD14226B0DAf56b97E3121a56B3d2B3f95F' //prod
 const tokenabi = bfmTokenabi
 
 let tokenBFM = async () => {
