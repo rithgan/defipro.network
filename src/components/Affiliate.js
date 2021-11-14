@@ -16,6 +16,7 @@ import modal from '../modal'
 import { theme } from './theme'
 import '../styles/Styles.css'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import PropTypes from 'prop-types'
 
 const themeAffiliate = createTheme({
 	...theme,
@@ -53,7 +54,7 @@ const themeAffiliate = createTheme({
 	},
 })
 
-const Affiliate = () => {
+const Affiliate = ({ token }) => {
 	const [referralUrl, setReferralUrl] = useState('')
 	const [copy, setCopy] = useState('Copy')
 	//
@@ -65,7 +66,14 @@ const Affiliate = () => {
 	useEffect(async () => {
 		let web3 = await modal()
 		let fromAddr = await web3.eth.getAccounts().then((response) => response[0])
-		setReferralUrl(() => 'https://' + window.location.host + '?r=' + fromAddr)
+		setReferralUrl(
+			() =>
+				'http://' +
+				window.location.host +
+				window.location.pathname +
+				'?r=' +
+				fromAddr
+		)
 	}, [referralUrl])
 	window.onload = function () {
 		setReferralUrl('')
@@ -185,6 +193,9 @@ const Affiliate = () => {
 			{/* </ThemeProvider> */}
 		</>
 	)
+}
+Affiliate.propTypes = {
+	token: PropTypes.string,
 }
 
 export default Affiliate

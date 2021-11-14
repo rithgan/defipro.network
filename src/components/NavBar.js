@@ -1,15 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext, useLayoutEffect } from 'react'
 import { Box, AppBar, Toolbar, Typography, Button, Switch } from '@mui/material'
-import chainContract from '../contract'
 import { styled, ThemeProvider } from '@mui/material/styles'
 import modal from '../modal'
 import { theme } from './theme'
 import PropTypes from 'prop-types'
 import '../styles/Styles.css'
+import TemporaryDrawer from './Sidebar'
+import Link from 'react-router-dom'
+import NavItems from './NavItems'
+
+function useWindowSize() {
+	const [size, setSize] = useState([0, 0])
+	useLayoutEffect(() => {
+		function updateSize() {
+			setSize([window.innerWidth, window.innerHeight])
+		}
+		window.addEventListener('resize', updateSize)
+		updateSize()
+		return () => window.removeEventListener('resize', updateSize)
+	}, [])
+	return size
+}
 
 const NavBar = ({ toggleColorMode }) => {
 	// const [myWeb3, setMyWeb3] = useState()
 	const [account, setAccount] = useState('Connect')
+	// const [width, setWidth] = useState('')
 	const connect = async () => {
 		let web3 = await modal()
 
@@ -22,20 +38,31 @@ const NavBar = ({ toggleColorMode }) => {
 			connect()
 		}
 	}, [])
-
+	// const ref = useRef(null)
+	// useEffect(() => {
+	// 	setWidth(window.innerWidth)
+	// }, [])
+	// console.log(width)
+	const [width, height] = useWindowSize()
 	return (
 		<>
 			<ThemeProvider theme={theme}>
 				<Box sx={{ flexGrow: 1 }}>
 					<AppBar position="static" sx={{ backgroundColor: 'rgb(19, 20, 25)' }}>
 						<Toolbar sx={{ justifyContent: 'space-between' }}>
-							<div>
+							<div className="navitem-left">
+								{/* <TemporaryDrawer /> */}
 								<Button color="inherit" sx={{ padding: 'none !important' }}>
-									<img src="./logo.svg" alt="logo" className="img" />
+									<img
+										src={width >= 600 ? './logo.svg' : './logo.png'}
+										alt="logo"
+										className="img"
+									/>
 								</Button>
+								<NavItems width={width} />
 							</div>
 
-							<div>
+							<div className="navitem-right">
 								<Button
 									onClick={connect}
 									color="secondary"

@@ -3,7 +3,8 @@
 }
 @media (max-width: 600px) {
 	.img {
-		width: 160px;
+		width: 44px;
+		height: auto;
 	}
 }
 
@@ -86,3 +87,36 @@
 		font-size: smaller;
 	}
 }
+
+.link {
+	color: white !important;
+	padding: 0.175rem;
+	margin: 0.15rem;
+	cursor: pointer;
+	font-size: 0.975rem;
+	text-decoration: none;
+}
+
+.subnav-content {
+	display: none;
+	position: absolute;
+	z-index: 1;
+	width: 20%;
+	background-color: red;
+	left: 40%;
+}
+
+.subnav:hover .subnav-content {
+	display: block;
+}
+
+#basic-button {
+	font-size: 0.975rem;
+	font-weight: 500;
+	margin-left: 2px;
+}
+
+/*.disable {
+	color: gray # !important;
+}
+*/
