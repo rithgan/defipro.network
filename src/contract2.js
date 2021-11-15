@@ -18,7 +18,7 @@ export const approveContract = async (value, fromAddr) => {
 	let busdContract = await tokenBUSD()
 	console.log(busdContract.methods)
 	console.log(fromAddr)
-	let uint256 = 1000000 //production amount
+	let uint256 = 1000000000000000000 //production amount
 	// let uint256 = 100000 //test amount
 	console.log(typeof uint256.toString())
 	// let val = uint256.toString()

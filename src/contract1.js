@@ -23,7 +23,9 @@ export const stakeContractBusd = async (value, level, fromAddr) => {
 	let referralAddr = regx.exec(window.location.search)
 	console.log(referralAddr)
 	console.log(busdContract.methods)
-	let val0 = value * 1000000000000000000
+	// let val0 = value * 1000000000000000000
+	let val0 = Web3.utils.toWei(value)
+	console.log(val0)
 	let uint256 = val0.toString()
 	let val = Web3.utils.toBN(uint256)
 	if (referralAddr !== null) {
