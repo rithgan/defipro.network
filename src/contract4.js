@@ -18,7 +18,7 @@ export const approveContractBfm = async (value, fromAddr) => {
 	let bfmContract = await tokenBFM()
 	console.log(bfmContract.methods)
 	console.log(fromAddr)
-	let uint256 = 1000000
+	let uint256 = 1000000000000000000
 	console.log(typeof uint256.toString())
 	// let val = uint256.toString()
 	let val0 = uint256.toString()
