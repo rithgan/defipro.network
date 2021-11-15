@@ -75,7 +75,7 @@ const NavBar = ({ toggleColorMode }) => {
 								>
 									{account === 'Connect'
 										? 'Connect'
-										: account.slice(0, 5) + '...' + account.slice(37)}
+										: account.slice(0, 3) + '...' + account.slice(39)}
 								</Button>
 							</div>
 						</Toolbar>

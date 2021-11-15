@@ -39,9 +39,9 @@ export default function App() {
               {/*   <Affiliate /> */}
               {/* </Grid> */}
               {/* Foooter */}
-              <Grid item md={12} sx={{ width: '100%' }}>
-                <Footer />
-              </Grid>
+              {/* <Grid item md={12} sx={{ width: '100%' }}> */}
+              {/*   <Footer /> */}
+              {/* </Grid> */}
             </Grid>
           </div>
         </section>

@@ -67,17 +67,17 @@ const NavItems = ({ width }) => {
 				>
 					<MenuItem onClick={handleClose}>
 						<Link to="/" className="link">
-							Earn BNB
+							BNB WAULT
 						</Link>
 					</MenuItem>
 					<MenuItem onClick={handleClose}>
 						<Link to="/busd" className="link">
-							Earn BUSD
+							BUSD WAULT
 						</Link>
 					</MenuItem>
 					<MenuItem onClick={handleClose}>
 						<Link to="/bfm" className="link">
-							Earn BFM
+							BFM WAULT
 						</Link>
 					</MenuItem>
 				</Menu>

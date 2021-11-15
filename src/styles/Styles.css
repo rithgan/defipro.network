@@ -1,16 +1,16 @@
 .img {
-	width: 240px;
+	width: 180px;
 }
 @media (max-width: 600px) {
 	.img {
-		width: 44px;
+		width: 36px;
 		height: auto;
 	}
 }
 
 @media (min-width: 601px && max-width: 1200px) {
 	.img {
-		width: 200px;
+		width: 160px;
 	}
 }
 
@@ -111,9 +111,9 @@
 }
 
 #basic-button {
-	font-size: 0.975rem;
+	font-size: 0.875rem;
 	font-weight: 500;
-	margin-left: 2px;
+	margin-left: 1px;
 	cursor: pointer;
 }
 
