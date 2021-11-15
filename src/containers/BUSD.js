@@ -111,6 +111,9 @@ const BUSD = () => {
 			<Grid item xs={12} sm={12} md={8}>
 				<Affiliate />
 			</Grid>
+			<Grid item md={12} sx={{ width: '100%' }}>
+				<Footer token="BUSD" />
+			</Grid>
 		</>
 	)
 }

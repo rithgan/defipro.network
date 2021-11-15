@@ -1,5 +1,6 @@
 import React from 'react'
 import LaunchIcon from '@mui/icons-material/Launch'
+import PropTypes from 'prop-types'
 
 const style = {
 	textAlign: 'center',
@@ -14,7 +15,7 @@ const style = {
 	width: '100%',
 	color: '#fff',
 }
-const Footer = () => {
+const Footer = ({ token }) => {
 	return (
 		<>
 			<div
@@ -27,7 +28,13 @@ const Footer = () => {
 			>
 				<a
 					style={style}
-					href="https://bscscan.com/address/0xac07e4b30d3559774f18c028afbad006291c8c3e#code"
+					href={
+						token === 'BNB'
+							? 'https://bscscan.com/address/0xac07e4b30d3559774f18c028afbad006291c8c3e#code'
+							: token === 'BUSD'
+							? 'https://bscscan.com/address/0x2782912E53f7B3101FD8512130A61A2266bEFAEb#code'
+							: 'https://bscscan.com/address/0x11d4d0b5a63D77d9F0e405364c26De7eca239F02#code'
+					}
 					target="_blank"
 					rel="noreferrer"
 				>
@@ -55,6 +62,10 @@ const Footer = () => {
 			</div>
 		</>
 	)
+}
+
+Footer.propTypes = {
+	token: PropTypes.string,
 }
 
 export default Footer
