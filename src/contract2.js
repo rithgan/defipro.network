@@ -26,7 +26,7 @@ export const approveContract = async (value, fromAddr) => {
 	let val = Web3.utils.toWei(val0)
 	console.log(val)
 	let response = await busdContract.methods
-		.approve('0x35E58aAa00DD758049093ED7076478f5094c6d8A', val)
+		.approve('0x2782912E53f7B3101FD8512130A61A2266bEFAEb', val)
 		.send({
 			from: fromAddr,
 			// gasLimit: 500000,
@@ -45,7 +45,7 @@ export const checkApproveStatus = async (fromAddr) => {
 	let busdContract = await tokenBUSD()
 	let response = await busdContract.methods
 
-		.allowance(fromAddr, '0x35E58aAa00DD758049093ED7076478f5094c6d8A')
+		.allowance(fromAddr, '0x2782912E53f7B3101FD8512130A61A2266bEFAEb')
 		.call()
 		.then((res) => res)
 	console.log(response)

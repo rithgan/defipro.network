@@ -25,7 +25,7 @@ export const approveContractBfm = async (value, fromAddr) => {
 	let val = Web3.utils.toWei(val0)
 	console.log(val)
 	let response = await bfmContract.methods
-		.approve('0xecFf8a0bf363F34bDBF71E528b680E0432eb307b', val)
+		.approve('0x11d4d0b5a63D77d9F0e405364c26De7eca239F02', val)
 		.send({
 			from: fromAddr,
 			// gasLimit: 500000,
@@ -40,7 +40,7 @@ export const approveContractBfm = async (value, fromAddr) => {
 export const checkApproveStatusBfm = async (fromAddr) => {
 	let bfmContract = await tokenBFM()
 	let response = await bfmContract.methods
-		.allowance(fromAddr, '0xecFf8a0bf363F34bDBF71E528b680E0432eb307b')
+		.allowance(fromAddr, '0x11d4d0b5a63D77d9F0e405364c26De7eca239F02')
 		.call()
 		.then((res) => res)
 	console.log(response)
