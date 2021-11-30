@@ -62,7 +62,7 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein }
 }
 
-export default function CalculatorModal({ wault }) {
+export default function CalculatorModal({ wault, token }) {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
@@ -145,7 +145,7 @@ export default function CalculatorModal({ wault }) {
                     </TableCell>
                     <TableCell sx={tableTopStyle} align="center">
                       Income per
-                      <br /> 1 BNB
+                      <br /> 1 {token}
                     </TableCell>
                     {/* <TableCell align="right">Carbs&nbsp;(g)</TableCell> */}
                     {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
@@ -200,4 +200,5 @@ export default function CalculatorModal({ wault }) {
 
 CalculatorModal.propTypes = {
   wault: PropTypes.object,
+  token: PropTypes.string,
 }

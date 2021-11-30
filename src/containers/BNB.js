@@ -14,6 +14,7 @@ import {
 } from '@mui/material/styles'
 import { getTotalDeposit, getTotalUserDeposit } from '../contract'
 import axios from 'axios'
+import { theme } from '../components/theme'
 
 const ItemPaper = styled(Paper)(() => ({
 	margin: '1rem',
@@ -23,6 +24,22 @@ const ItemPaper = styled(Paper)(() => ({
 	borderRadius: '16px',
 	boxShadow: '0 0 8px 2px rgb(0 0 0 / 8%)',
 }))
+
+const themeTypography = createTheme({
+	...theme,
+	components: {
+		MuiTypography: {
+			styleOverrides: {
+				root: {
+					paddingBottom: '4px',
+					// width: '248px',
+					// borderRadius: '16px !important',
+				},
+			},
+		},
+	},
+})
+
 const BNB = () => {
 	const [total, setTotal] = useState(0)
 	const [referral, setReferral] = useState(0)
@@ -47,63 +64,76 @@ const BNB = () => {
 	console.log(price)
 	return (
 		<>
-			{/* <Grid container spacing={4}> */}
-			<Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
-				<ItemPaper>
-					<Typography variant="h5" sx={{ textAlign: 'center' }}>
-						Total Value Deposited
-					</Typography>
-					<Typography variant="h5" sx={{ textAlign: 'center' }}>
-						{(total / 1000000000000000000).toString().slice(0, 10)} BNB
-					</Typography>
-					<Typography
-						variant="h6"
-						sx={{ textAlign: 'center', color: '#c1c1c1' }}
-					>
-						{((price * total) / 1000000000000000000).toString().slice(0, 10)} $
-					</Typography>
-				</ItemPaper>
-			</Grid>
-			<Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
-				<ItemPaper>
-					<Typography variant="h5" sx={{ textAlign: 'center' }}>
-						Total BFM Mint
-					</Typography>
-					<Typography variant="h5" sx={{ textAlign: 'center' }}>
-						{((total / 1000000000000000000) * 5).toString().slice(0, 10)} BFM
-					</Typography>
-				</ItemPaper>
-			</Grid>
-			<Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
-				<ItemPaper>
-					<Typography variant="h5" sx={{ textAlign: 'center' }}>
-						User Total Deposit
-					</Typography>
-					<Typography variant="h5" sx={{ textAlign: 'center' }}>
-						{(referral / 1000000000000000000).toString().slice(0, 10)} BNB
-					</Typography>
-					<Typography
-						variant="h6"
-						sx={{ textAlign: 'center', color: '#c1c1c1' }}
-					>
-						{((price * referral) / 1000000000000000000).toString().slice(0, 10)}{' '}
-						$
-					</Typography>
-				</ItemPaper>
-			</Grid>
-			<Grid item>
-				<PoolCards token="BNB" />
-			</Grid>
-			<Grid item xs={12} sm={12} md={4}>
-				<Farms token="BNB" />
-				<Stats token="BNB" />
-			</Grid>
-			<Grid item xs={12} sm={12} md={8}>
-				<Affiliate />
-			</Grid>
-			<Grid item md={12} sx={{ width: '100%' }}>
-				<Footer token="BNB" />
-			</Grid>
+			<ThemeProvider theme={themeTypography}>
+				{/* <Grid container spacing={4}> */}
+				<Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
+					<ItemPaper>
+						<Typography variant="h6" sx={{ textAlign: 'center' }}>
+							Total Value Deposited
+						</Typography>
+						<Typography variant="h5" sx={{ textAlign: 'center' }}>
+							{(total / 1000000000000000000).toString().slice(0, 10)} BNB
+						</Typography>
+						<Typography
+							variant="h6"
+							sx={{
+								textAlign: 'center',
+								color: '#c1c1c1',
+								fontSize: 'smaller',
+							}}
+						>
+							${' '}
+							{((price * total) / 1000000000000000000).toString().slice(0, 10)}
+						</Typography>
+					</ItemPaper>
+				</Grid>
+				<Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
+					<ItemPaper>
+						<Typography variant="h6" sx={{ textAlign: 'center' }}>
+							Total BFM Mint
+						</Typography>
+						<Typography variant="h5" sx={{ textAlign: 'center' }}>
+							{((total / 1000000000000000000) * 5).toString().slice(0, 10)} BFM
+						</Typography>
+					</ItemPaper>
+				</Grid>
+				<Grid item sm={12} md={4} sx={{ marginTop: '16px' }}>
+					<ItemPaper>
+						<Typography variant="h6" sx={{ textAlign: 'center' }}>
+							User Total Deposit
+						</Typography>
+						<Typography variant="h5" sx={{ textAlign: 'center' }}>
+							{(referral / 1000000000000000000).toString().slice(0, 10)} BNB
+						</Typography>
+						<Typography
+							variant="h6"
+							sx={{
+								textAlign: 'center',
+								color: '#c1c1c1',
+								fontSize: 'smaller',
+							}}
+						>
+							$
+							{((price * referral) / 1000000000000000000)
+								.toString()
+								.slice(0, 10)}{' '}
+						</Typography>
+					</ItemPaper>
+				</Grid>
+				<Grid item>
+					<PoolCards token="BNB" />
+				</Grid>
+				<Grid item xs={12} sm={12} md={4}>
+					<Farms token="BNB" />
+					<Stats token="BNB" />
+				</Grid>
+				<Grid item xs={12} sm={12} md={8}>
+					<Affiliate />
+				</Grid>
+				<Grid item md={12} sx={{ width: '100%' }}>
+					<Footer token="BNB" />
+				</Grid>
+			</ThemeProvider>
 		</>
 	)
 }

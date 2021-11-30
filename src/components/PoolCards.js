@@ -44,7 +44,7 @@ const ItemHeading = styled(`h4`)(() => ({
 	// paddingBottom: '0.35rem',
 	color: '#e3af00',
 	textTransform: 'capitalize',
-	fontSize: '1.5rem',
+	fontSize: '1.4rem',
 	// letterSpacing: '0.1rem',
 	lineHeight: '2',
 }))
@@ -328,6 +328,7 @@ const PoolCards = ({ token, approved }) => {
 															fontSize: '1.3rem',
 														}}
 														wault={waultA}
+														token={token}
 													/>
 												</span>
 											</UpperText>
@@ -431,6 +432,7 @@ const PoolCards = ({ token, approved }) => {
 															fontSize: '1.3rem',
 														}}
 														wault={waultB}
+														token={token}
 													/>
 												</span>
 											</UpperText>
@@ -534,6 +536,7 @@ const PoolCards = ({ token, approved }) => {
 															fontSize: '1.3rem',
 														}}
 														wault={waultC}
+														token={token}
 													/>
 												</span>
 											</UpperText>
@@ -637,6 +640,7 @@ const PoolCards = ({ token, approved }) => {
 															fontSize: '1.3rem',
 														}}
 														wault={waultD}
+														token={token}
 													/>
 												</span>
 											</UpperText>
